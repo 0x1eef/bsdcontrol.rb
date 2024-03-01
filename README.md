@@ -49,7 +49,7 @@ are available as sources.
 
 **Rubygems.org**
 
-lock.rb can also be installed via rubygems.org.
+hbsdctl.rb can also be installed via rubygems.org.
 
     gem install hbsdctl.rb
 
