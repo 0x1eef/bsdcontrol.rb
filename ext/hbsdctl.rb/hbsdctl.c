@@ -61,9 +61,9 @@ Init_hbsdctl(void)
         rb_cFeature = rb_const_get(rb_mControl, rb_intern("Feature")),
         rb_mFFI     = rb_const_get(rb_mControl, rb_intern("FFI"));
 
-  rb_define_const(rb_mBSD, "SysDef", -1);
-  rb_define_const(rb_mBSD, "Disable", 0);
-  rb_define_const(rb_mBSD, "Enable", 1);
+  rb_define_const(rb_mControl, "SysDef", -1);
+  rb_define_const(rb_mControl, "Disable", 0);
+  rb_define_const(rb_mControl, "Enable", 1);
   rb_define_singleton_method(rb_mFFI, "available_features", ffi_available_features, 0);
   rb_define_method(rb_cFeature, "set!", feature_set, 2);
 }
