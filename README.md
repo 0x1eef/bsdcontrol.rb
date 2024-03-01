@@ -47,11 +47,6 @@ and
 [GitLab](https://gitlab.com/0x1eef/hbsdctl.rb)
 are available as sources.
 
-``` ruby
-# Gemfile
-gem "lock.fb", github: "0x1eef/hbsdctl.rb", tag: "v0.12.0"
-```
-
 **Rubygems.org**
 
 lock.rb can also be installed via rubygems.org.
