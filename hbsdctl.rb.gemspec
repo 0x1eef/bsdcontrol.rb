@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.files = `git ls-files`.split($/)
   gem.require_paths = ["lib"]
   gem.extensions = %w[ext/hbsdctl.rb/extconf.rb]
-  gem.summary = "A Ruby interface for libhbsdcontrol"
+  gem.summary = "Ruby bindings for libhbsdcontrol"
   gem.description = gem.summary
   gem.add_development_dependency "rake-compiler", "= 1.2.0"
 end
