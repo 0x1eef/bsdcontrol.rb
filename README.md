@@ -3,7 +3,7 @@
 hbsdctl.rb is a Ruby C extension that binds libhbsdcontrol from the
 [hardenedbsd](https://hardenedbsd.org) project. Through this library,
 you can query what features are available and if root, enable or disable
-those features for given binaries.
+those features for a given executable.
 
 ## Examples
 
@@ -36,6 +36,27 @@ BSD::Control
   .feature!("mprotect")
   .enable!("/usr/local/bin/emacs")
 ```
+
+## Install
+
+**Git**
+
+hbsdctl.rb is distributed as a RubyGem through its git repositories. <br>
+[GitHub](https://github.com/0x1eef/hbsdctl.rb),
+and
+[GitLab](https://gitlab.com/0x1eef/hbsdctl.rb)
+are available as sources.
+
+``` ruby
+# Gemfile
+gem "lock.fb", github: "0x1eef/hbsdctl.rb", tag: "v0.12.0"
+```
+
+**Rubygems.org**
+
+lock.rb can also be installed via rubygems.org.
+
+    gem install hbsdctl.rb
 
 ## License
 
