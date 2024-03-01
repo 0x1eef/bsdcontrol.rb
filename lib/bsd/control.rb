@@ -3,6 +3,13 @@ module BSD::Control
   Error = Class.new(RuntimeError)
 
   ##
+  # @return [String]
+  #  Returns the version of libhbsdcontrol.
+  def self.library_version
+    FFI.library_version
+  end
+
+  ##
   # @return [Array<BSD::Control::Feature>]
   def self.available_features
     Feature.available

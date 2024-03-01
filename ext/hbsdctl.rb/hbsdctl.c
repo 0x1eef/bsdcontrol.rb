@@ -27,6 +27,14 @@ ffi_available_features(VALUE self)
 }
 
 static VALUE
+ffi_library_version(VALUE self)
+{
+  const char *ver;
+  ver = hbsdcontrol_get_version();
+  return rb_str_new2(ver);
+}
+
+static VALUE
 feature_set(VALUE self, VALUE path, VALUE state)
 {
   int r;
@@ -65,5 +73,6 @@ Init_hbsdctl(void)
   rb_define_const(rb_mControl, "Disable", 0);
   rb_define_const(rb_mControl, "Enable", 1);
   rb_define_singleton_method(rb_mFFI, "available_features", ffi_available_features, 0);
+  rb_define_singleton_method(rb_mFFI, "library_version", ffi_library_version, 0);
   rb_define_method(rb_cFeature, "set!", feature_set, 2);
 }

@@ -124,6 +124,5 @@ module BSD::Control
     end
 
     # @endgroup
-    private :set!
   end
 end
