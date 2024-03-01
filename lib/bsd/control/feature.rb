@@ -8,10 +8,13 @@ module BSD::Control
     end
 
     ##
-    # Enables a feature for a given binary.
+    # Enables a feature for a given executable.
     #
     # @param [String] path
-    #  The path to a binary.
+    #  The path to an executable.
+    #
+    # @raise [BSD::Control::Error]
+    #  When the operation fails.
     #
     # @return [Boolean]
     #  Returns true on success.
@@ -20,10 +23,13 @@ module BSD::Control
     end
 
     ##
-    # Disables a feature for a given binary.
+    # Disables a feature for a given executable.
     #
     # @param [String] path
-    #  The path to a binary.
+    #  The path to an executable.
+    #
+    # @raise [BSD::Control::Error]
+    #  When the operation fails.
     #
     # @return [Boolean]
     #  Returns true on success.

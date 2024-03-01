@@ -43,7 +43,10 @@ feature_set(VALUE self, VALUE path, VALUE state)
   if (r == 0) {
     return Qtrue;
   } else {
-    return Qfalse;
+    VALUE rb_mBSD = rb_const_get(rb_cObject, rb_intern("BSD")),
+          rb_mControl = rb_const_get(rb_mBSD, rb_intern("Control")),
+          rb_eError = rb_const_get(rb_mControl, rb_intern("Error"));
+    rb_raise(rb_eError, "hbsdcontrol_set_feature_state failed");
   }
 }
 
