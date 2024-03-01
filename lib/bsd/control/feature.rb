@@ -11,10 +11,10 @@ module BSD::Control
     # @group Actions
 
     ##
-    # Enables a feature for a given executable.
+    # Enables a feature for a given file.
     #
     # @param [String] path
-    #  The path to an executable.
+    #  The path to a file.
     #
     # @raise [BSD::Control::Error]
     #  When the operation fails.
@@ -26,10 +26,10 @@ module BSD::Control
     end
 
     ##
-    # Disables a feature for a given executable.
+    # Disables a feature for a given file.
     #
     # @param [String] path
-    #  The path to an executable.
+    #  The path to a file.
     #
     # @raise [BSD::Control::Error]
     #  When the operation fails.
@@ -44,7 +44,7 @@ module BSD::Control
     # Restore system defaults.
     #
     # @param [String] path
-    #  The path to an executable.
+    #  The path to a file.
     #
     # @raise [BSD::Control::Error]
     #  When the operation fails.

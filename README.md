@@ -3,7 +3,7 @@
 hbsdctl.rb is a Ruby C extension that binds libhbsdcontrol from the
 [hardenedbsd](https://hardenedbsd.org) project. Through this library,
 you can query what features are available and if root, enable or disable
-those features for a given executable.
+those features for a given file.
 
 ## Examples
 
@@ -25,7 +25,7 @@ end
 
 __Enable feature__
 
-As a superuser account, you can enable or disable features for a given executable.
+As a superuser account, you can enable or disable features for a given file.
 The example enables the mprotect feature for the emacs binary:
 
 ``` ruby
