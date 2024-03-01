@@ -8,6 +8,9 @@ module BSD::Control
     end
 
     ##
+    # @group Actions
+
+    ##
     # Enables a feature for a given executable.
     #
     # @param [String] path
@@ -51,6 +54,8 @@ module BSD::Control
     def sysdef!(path)
       set!(path, BSD::Control::SysDef)
     end
+
+    # @endgroup
 
     ##
     # @group Predicates
