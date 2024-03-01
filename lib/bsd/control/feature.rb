@@ -38,6 +38,21 @@ module BSD::Control
     end
 
     ##
+    # Restore system defaults.
+    #
+    # @param [String] path
+    #  The path to an executable.
+    #
+    # @raise [BSD::Control::Error]
+    #  When the operation fails.
+    #
+    # @return [Boolean]
+    #  Returns true on success.
+    def sysdef!(path)
+      set!(path, BSD::Control::SysDef)
+    end
+
+    ##
     # @group Predicates
 
     ##
@@ -104,5 +119,6 @@ module BSD::Control
     end
 
     # @endgroup
+    private :set!
   end
 end
