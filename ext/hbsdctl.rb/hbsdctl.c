@@ -74,5 +74,5 @@ Init_hbsdctl(void)
   rb_define_const(rb_mControl, "Enable", INT2NUM(1));
   rb_define_singleton_method(rb_mFFI, "available_features", ffi_available_features, 0);
   rb_define_singleton_method(rb_mFFI, "library_version", ffi_library_version, 0);
-  rb_define_method(rb_cFeature, "set!", feature_set, 2);
+  rb_define_private_method(rb_cFeature, "set!", feature_set, 2);
 }
