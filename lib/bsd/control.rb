@@ -11,8 +11,8 @@ module BSD::Control
   ##
   # @example
   #   BSD::Control
-  #     .feature!("mprotect")
-  #     .set!("/usr/local/bin/firefox", BSD::Enable)
+  #     .feature!(:mprotect)
+  #     .enable!("/usr/local/bin/firefox")
   #
   # @param [String] name
   #  The name of a feature.
