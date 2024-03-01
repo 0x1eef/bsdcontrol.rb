@@ -1,0 +1,22 @@
+PATH
+  remote: .
+  specs:
+    hbsdctl.rb (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rake (13.1.0)
+    rake-compiler (1.2.0)
+      rake
+
+PLATFORMS
+  amd64-freebsd-14
+  ruby
+
+DEPENDENCIES
+  hbsdctl.rb!
+  rake-compiler (= 1.2.0)
+
+BUNDLED WITH
+   2.5.3
