@@ -2,6 +2,14 @@
 #include <libhbsdcontrol.h>
 
 static VALUE
+ffi_library_version(VALUE self)
+{
+  const char *ver;
+  ver = hbsdcontrol_get_version();
+  return rb_str_new2(ver);
+}
+
+static VALUE
 ffi_available_features(VALUE self)
 {
   const struct pax_feature_entry *entry = &pax_features[0];
@@ -24,14 +32,6 @@ ffi_available_features(VALUE self)
     entry++;
   }
   return features;
-}
-
-static VALUE
-ffi_library_version(VALUE self)
-{
-  const char *ver;
-  ver = hbsdcontrol_get_version();
-  return rb_str_new2(ver);
 }
 
 static VALUE
