@@ -40,6 +40,21 @@ module BSD::Control
       set!(path, BSD::Control::Disable)
     end
 
+    ##
+    # Restore system defaults.
+    #
+    # @param [String] path
+    #  The path to a file.
+    #
+    # @raise [BSD::Control::Error]
+    #  When the operation fails.
+    #
+    # @return [Boolean]
+    #  Returns true on success.
+    def sysdef!(path)
+      FFI.reset!(self, path)
+    end
+
     # @endgroup
 
     ##
