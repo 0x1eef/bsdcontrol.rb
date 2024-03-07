@@ -7,29 +7,29 @@ static VALUE get_rb_eError(void);
  * BSD::Control::Feature#set!
  **/
 VALUE
-feature_set(VALUE self, VALUE path, VALUE state)
+feature_set(VALUE self, VALUE rb_path, VALUE rb_state)
 {
-  int r;
-  char *cpath;
-  VALUE name;
-
+  Check_Type(rb_path, T_STRING);
+  Check_Type(rb_state, T_FIXNUM);
   if (getuid() != 0) {
     rb_raise(get_rb_eError(), "This operation requires root privileges.");
-  }
-  Check_Type(path, T_STRING);
-  Check_Type(state, T_FIXNUM);
-  cpath = RSTRING_PTR(path);
-  name = rb_funcall(self, rb_intern("name"), 0);
-  Check_Type(name, T_STRING);
-  r = hbsdcontrol_set_feature_state(
-    cpath,
-    RSTRING_PTR(name),
-    NUM2INT(state)
-    );
-  if (r == 0) {
-    return (Qtrue);
+  } else if (rb_funcall(rb_cFile, rb_intern("exist?"), 1, rb_path) == Qfalse) {
+    rb_raise(get_rb_eError(), "The given path does not exist.");
   } else {
-    rb_raise(get_rb_eError(), "hbsdcontrol_set_feature_state failed");
+    int r;
+    VALUE rb_name;
+    rb_name = rb_funcall(self, rb_intern("name"), 0);
+    Check_Type(rb_name, T_STRING);
+    r = hbsdcontrol_set_feature_state(
+      RSTRING_PTR(rb_path),
+      RSTRING_PTR(rb_name),
+      NUM2INT(rb_state)
+      );
+    if (r == 0) {
+      return (Qtrue);
+    } else {
+      rb_raise(get_rb_eError(), "hbsdcontrol_set_feature_state failed");
+    }
   }
 }
 
