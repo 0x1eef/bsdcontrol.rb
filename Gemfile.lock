@@ -6,9 +6,12 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    power_assert (2.0.3)
     rake (13.1.0)
     rake-compiler (1.2.0)
       rake
+    test-unit (3.6.2)
+      power_assert
 
 PLATFORMS
   amd64-freebsd-14
@@ -17,6 +20,7 @@ PLATFORMS
 DEPENDENCIES
   hbsdctl.rb!
   rake-compiler (= 1.2.0)
+  test-unit (~> 3.6)
 
 BUNDLED WITH
    2.5.3

@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+if [ $(id -u) = 0 ]; then
+    rake clean clobber compile
+    for file in test/superuser/*_test.rb; do
+        ruby -Ilib ${file} --no-use-color
+    done
+else
+    echo "You must be root to run superuser tests."
+    exit 1
+fi

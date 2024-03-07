@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+rake clean clobber compile
+for file in test/unprivileged/*_test.rb; do
+    ruby -Ilib ${file} --no-use-color
+done

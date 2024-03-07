@@ -11,4 +11,5 @@ Gem::Specification.new do |gem|
   gem.summary = "Ruby bindings for libhbsdcontrol"
   gem.description = gem.summary
   gem.add_development_dependency "rake-compiler", "= 1.2.0"
+  gem.add_development_dependency "test-unit", "~> 3.6"
 end
