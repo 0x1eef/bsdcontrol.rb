@@ -8,28 +8,31 @@ get_rb_eError(void)
   VALUE rb_mBSD = rb_const_get(rb_cObject, rb_intern("BSD")),
     rb_mControl = rb_const_get(rb_mBSD, rb_intern("Control")),
     rb_eError = rb_const_get(rb_mControl, rb_intern("Error"));
-  return rb_eError;
+  return (rb_eError);
 }
+
 
 static VALUE
 ffi_library_version(VALUE self)
 {
   const char *ver;
   ver = hbsdcontrol_get_version();
-  return rb_str_new2(ver);
+  return (rb_str_new2(ver));
 }
+
 
 static VALUE
 ffi_available_features(VALUE self)
 {
   const struct pax_feature_entry *entry = &pax_features[0];
-  VALUE rb_mBSD     = rb_const_get(rb_cObject, rb_intern("BSD")),
-        rb_mControl = rb_const_get(rb_mBSD, rb_intern("Control")),
-        rb_cFeature = rb_const_get(rb_mControl, rb_intern("Feature")),
-        features = rb_ary_new(),
-        feature = 0;
+  VALUE rb_mBSD = rb_const_get(rb_cObject, rb_intern("BSD")),
+    rb_mControl = rb_const_get(rb_mBSD, rb_intern("Control")),
+    rb_cFeature = rb_const_get(rb_mControl, rb_intern("Feature")),
+    features = rb_ary_new(),
+    feature = 0;
 
-  while (entry->feature != NULL) {
+  while (entry->feature != NULL)
+  {
     feature = rb_funcall(
       rb_cFeature,
       rb_intern("new"),
@@ -37,12 +40,13 @@ ffi_available_features(VALUE self)
       rb_str_new2(entry->feature),
       rb_str_new2(entry->extattr[1]),
       rb_str_new2(entry->extattr[0])
-    );
+      );
     rb_ary_push(features, feature);
     entry++;
   }
-  return features;
+  return (features);
 }
+
 
 static VALUE
 ffi_reset(VALUE self, VALUE rb_feature, VALUE rb_path)
@@ -61,8 +65,9 @@ ffi_reset(VALUE self, VALUE rb_feature, VALUE rb_path)
   disable_flag = RSTRING_PTR(rb_disable_flag);
   r = hbsdcontrol_extattr_rm_attr(path, disable_flag);
   r &= hbsdcontrol_extattr_rm_attr(path, enable_flag);
-  return r == 0 ? Qtrue : Qfalse;
+  return (r == 0 ? Qtrue : Qfalse);
 }
+
 
 static VALUE
 feature_set(VALUE self, VALUE path, VALUE state)
@@ -83,21 +88,22 @@ feature_set(VALUE self, VALUE path, VALUE state)
     cpath,
     RSTRING_PTR(name),
     NUM2INT(state)
-  );
+    );
   if (r == 0) {
-    return Qtrue;
+    return (Qtrue);
   } else {
     rb_raise(get_rb_eError(), "hbsdcontrol_set_feature_state failed");
   }
 }
 
+
 void
 Init_hbsdctl(void)
 {
-  VALUE rb_mBSD     = rb_const_get(rb_cObject, rb_intern("BSD")),
-        rb_mControl = rb_const_get(rb_mBSD, rb_intern("Control")),
-        rb_cFeature = rb_const_get(rb_mControl, rb_intern("Feature")),
-        rb_mFFI     = rb_const_get(rb_mControl, rb_intern("FFI"));
+  VALUE rb_mBSD = rb_const_get(rb_cObject, rb_intern("BSD")),
+    rb_mControl = rb_const_get(rb_mBSD, rb_intern("Control")),
+    rb_cFeature = rb_const_get(rb_mControl, rb_intern("Feature")),
+    rb_mFFI = rb_const_get(rb_mControl, rb_intern("FFI"));
 
   rb_define_const(rb_mControl, "Disable", INT2NUM(0));
   rb_define_const(rb_mControl, "Enable", INT2NUM(1));
