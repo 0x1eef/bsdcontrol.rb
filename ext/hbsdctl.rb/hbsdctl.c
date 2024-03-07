@@ -49,6 +49,7 @@ ffi_reset(VALUE self, VALUE rb_feature, VALUE rb_path)
 {
   VALUE rb_enable_flag, rb_disable_flag;
   char *enable_flag, *disable_flag, *path;
+  int r;
 
   rb_enable_flag = rb_funcall(rb_feature, rb_intern("enable"), 0);
   rb_disable_flag = rb_funcall(rb_feature, rb_intern("disable"), 0);
@@ -58,12 +59,9 @@ ffi_reset(VALUE self, VALUE rb_feature, VALUE rb_path)
   path = RSTRING_PTR(rb_path);
   enable_flag = RSTRING_PTR(rb_enable_flag);
   disable_flag = RSTRING_PTR(rb_disable_flag);
-  if(hbsdcontrol_extattr_rm_attr(path, disable_flag) == 0 ||
-     hbsdcontrol_extattr_rm_attr(path, enable_flag) == 0) {
-    return Qtrue;
-  } else {
-    return Qfalse;
-  }
+  r = hbsdcontrol_extattr_rm_attr(path, disable_flag);
+  r &= hbsdcontrol_extattr_rm_attr(path, enable_flag);
+  return r == 0 ? Qtrue : Qfalse;
 }
 
 static VALUE
