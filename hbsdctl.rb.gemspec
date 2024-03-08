@@ -2,7 +2,7 @@ Gem::Specification.new do |gem|
   gem.name = "hbsdctl.rb"
   gem.authors = ["0x1eef"]
   gem.email = ["0x1eef@protonmail.com"]
-  gem.homepage = "https://github.com/0x1eef/hbsdctl.rb#readme"
+  gem.homepage = "https://git.hardenedbsd.org/0x1eef/hbsdctl.rb#readme"
   gem.version = "0.1.0"
   gem.licenses = ["0BSD"]
   gem.files = `git ls-files`.split($/)
