@@ -5,6 +5,14 @@
 #include <errno.h>
 #include "include/ffi.h"
 
+static struct Options __options_init(VALUE, VALUE);
+
+struct Options {
+  char *path;
+  char *enable_flag;
+  char *disable_flag;
+};
+
 /**
  * BSD::Control::FFI.available_features
  **/
@@ -41,20 +49,12 @@ ffi_available_features(VALUE self)
 VALUE
 ffi_sysdef(VALUE self, VALUE rb_feature, VALUE rb_path)
 {
-  VALUE rb_enable_flag, rb_disable_flag;
-  char *enable_flag, *disable_flag, *path;
+  struct Options options;
   int r;
 
-  rb_enable_flag = rb_funcall(rb_feature, rb_intern("enable"), 0);
-  rb_disable_flag = rb_funcall(rb_feature, rb_intern("disable"), 0);
-  Check_Type(rb_path, T_STRING);
-  Check_Type(rb_enable_flag, T_STRING);
-  Check_Type(rb_disable_flag, T_STRING);
-  path = RSTRING_PTR(rb_path);
-  enable_flag = RSTRING_PTR(rb_enable_flag);
-  disable_flag = RSTRING_PTR(rb_disable_flag);
-  r = hbsdcontrol_extattr_rm_attr(path, disable_flag);
-  r &= hbsdcontrol_extattr_rm_attr(path, enable_flag);
+  options = __options_init(rb_feature, rb_path);
+  r = hbsdcontrol_extattr_rm_attr(options.path, options.disable_flag);
+  r &= hbsdcontrol_extattr_rm_attr(options.path, options.enable_flag);
   return (r == 0 ? Qtrue : Qfalse);
 }
 
@@ -65,25 +65,26 @@ ffi_sysdef(VALUE self, VALUE rb_feature, VALUE rb_path)
 VALUE
 ffi_status(VALUE self, VALUE rb_feature, VALUE rb_path)
 {
-  VALUE rb_enable_flag, rb_disable_flag;
-  char *enable_flag, *disable_flag, *path, enable_data[2], disable_data[2];
-  int namespace;
+  struct Options options;
+  char enable_data[2], disable_data[2];
+  int ns;
 
-  rb_enable_flag = rb_funcall(rb_feature, rb_intern("enable"), 0);
-  rb_disable_flag = rb_funcall(rb_feature, rb_intern("disable"), 0);
-  Check_Type(rb_path, T_STRING);
-  Check_Type(rb_enable_flag, T_STRING);
-  Check_Type(rb_disable_flag, T_STRING);
-  path = RSTRING_PTR(rb_path);
-  enable_flag = RSTRING_PTR(rb_enable_flag);
-  disable_flag = RSTRING_PTR(rb_disable_flag);
-  if (extattr_string_to_namespace("system", &namespace) == -1) {
-    rb_syserr_fail(errno, "extattr_string_to_namespace");
+  options = __options_init(rb_feature, rb_path);
+  if (extattr_string_to_ns("system", &ns) == -1) {
+    rb_syserr_fail(errno, "extattr_string_to_ns");
   }
-  if (extattr_get_file(path, namespace, enable_flag, &enable_data, 2) == -1) {
+  if (
+    extattr_get_file(
+      options.path, ns,
+      options.enable_flag, &enable_data,
+      2) == -1) {
     rb_syserr_fail(errno, "extattr_get_file");
   }
-  if (extattr_get_file(path, namespace, disable_flag, &disable_data, 2) == -1) {
+  if (
+    extattr_get_file(
+      options.path, ns,
+      options.disable_flag, &disable_data,
+      2) == -1) {
     rb_syserr_fail(errno, "extattr_get_file");
   }
   if (strcmp(enable_data, disable_data) == 0) {
@@ -105,4 +106,23 @@ ffi_library_version(VALUE self)
   const char *ver;
   ver = hbsdcontrol_get_version();
   return (rb_str_new2(ver));
+}
+
+
+static
+struct Options
+__options_init(VALUE rb_feature, VALUE rb_path)
+{
+  VALUE rb_enable_flag, rb_disable_flag;
+  struct Options options;
+
+  rb_enable_flag = rb_funcall(rb_feature, rb_intern("enable"), 0);
+  rb_disable_flag = rb_funcall(rb_feature, rb_intern("disable"), 0);
+  Check_Type(rb_enable_flag, T_STRING);
+  Check_Type(rb_disable_flag, T_STRING);
+  Check_Type(rb_path, T_STRING);
+  options.path = RSTRING_PTR(rb_path);
+  options.enable_flag = RSTRING_PTR(rb_enable_flag);
+  options.disable_flag = RSTRING_PTR(rb_disable_flag);
+  return (options);
 }
