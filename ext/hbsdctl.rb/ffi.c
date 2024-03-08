@@ -36,10 +36,10 @@ ffi_available_features(VALUE self)
 
 
 /**
- * BSD::Control::FFI.reset!
+ * BSD::Control::FFI.sysdef!
  **/
 VALUE
-ffi_reset(VALUE self, VALUE rb_feature, VALUE rb_path)
+ffi_sysdef(VALUE self, VALUE rb_feature, VALUE rb_path)
 {
   VALUE rb_enable_flag, rb_disable_flag;
   char *enable_flag, *disable_flag, *path;

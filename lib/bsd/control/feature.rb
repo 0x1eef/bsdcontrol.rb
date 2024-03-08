@@ -52,7 +52,7 @@ module BSD::Control
     # @return [Boolean]
     #  Returns true on success.
     def sysdef!(path)
-      FFI.reset!(self, path)
+      FFI.sysdef!(self, path)
     end
 
     ##
