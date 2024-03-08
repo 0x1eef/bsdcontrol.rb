@@ -2,7 +2,7 @@ module BSD::Control
   class Feature < Struct.new(:name, :enable, :disable)
     ##
     # @return [Array<BSD::Control::Feature>]
-    #   Returns an array of available features.
+    #  Returns an array of available features.
     def self.available
       BSD::Control::FFI.available_features
     end
@@ -41,7 +41,7 @@ module BSD::Control
     end
 
     ##
-    # Restore system defaults.
+    # Restore system defaults for a given file.
     #
     # @param [String] path
     #  The path to a file.

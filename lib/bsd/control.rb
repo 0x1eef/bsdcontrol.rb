@@ -11,6 +11,7 @@ module BSD::Control
 
   ##
   # @return [Array<BSD::Control::Feature>]
+  #  Returns an array of available features.
   def self.available_features
     Feature.available
   end
@@ -19,7 +20,7 @@ module BSD::Control
   # @example
   #   BSD::Control
   #     .feature(:mprotect)
-  #     .enable!("/usr/local/bin/firefox")
+  #     .enable!("/usr/local/bin/emacs-29.2")
   #
   # @param [String] name
   #  The name of a feature.
@@ -28,9 +29,9 @@ module BSD::Control
   #  When a feature is not found.
   #
   # @return [BSD::Control::Feature]
-  #  Returns an instance of BSD::Control::Feature.
+  #  Returns an instance of {BSD::Control::Feature BSD::Control::Feature}.
   def self.feature(name)
-    feature = Feature.available.find { _1.name == name.to_s }
+    feature = available_features.find { _1.name == name.to_s }
     feature ? feature : raise(Error, "feature '#{name}' wasn't found")
   end
 
