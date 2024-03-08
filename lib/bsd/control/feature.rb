@@ -55,21 +55,35 @@ module BSD::Control
       FFI.sysdef!(self, path)
     end
 
+    # @endgroup
+
     ##
+    # @group Queries
+
+    ##
+    # @param [String] path
+    #  The path to a file.
+    #
     # @return [Boolean]
-    #  Returns true when a feature is enabled.
+    #  Returns true when a feature is enabled for a given file.
     def enabled?(path)
       status(path) == :enabled
     end
 
     ##
+    # @param [String] path
+    #  The path to a file.
+    #
     # @return [Boolean]
-    #  Returns true when a feature is disabled.
+    #  Returns true when a feature is disabled for a given file.
     def disabled?(path)
       status(path) == :disabled
     end
 
     ##
+    # @param [String] path
+    #  The path to a file.
+    #
     # @return [Boolean]
     #  Returns true when a feature is configured to use the system default.
     def sysdef?(path)
@@ -77,6 +91,9 @@ module BSD::Control
     end
 
     ##
+    # @param [String] path
+    #  The path to a file.
+    #
     # @return [Boolean]
     #  Returns true when a feature is in conflict
     #  (i.e: the feature is both enabled and disabled at the same time).
@@ -87,8 +104,12 @@ module BSD::Control
     ##
     # @param [String] path
     #  The path to a file.
+    #
+    # @raise [SystemCallError]
+    #  Might raise a number of Errno exceptions.
+    #
     # @return [Symbol]
-    #  Returns the feature status of a file.
+    #  Returns the status of a feature for a given file.
     #  Status can be one of: `:conflict`, `:sysdef`, `:enabled`, `:disabled`.
     def status(path)
       FFI.status(self, path)
