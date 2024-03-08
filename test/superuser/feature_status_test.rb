@@ -7,16 +7,16 @@ module BSD::Control
     def test_mprotect_sysdef_status
       touch(file)
       assert_equal :sysdef,
-                   BSD::Control.feature!(:mprotect).status(file)
+                   BSD::Control.feature(:mprotect).status(file)
     ensure
       rm(file)
     end
 
     def test_mprotect_enabled_status
       touch(file)
-      BSD::Control.feature!(:mprotect).enable!(file)
+      BSD::Control.feature(:mprotect).enable!(file)
       assert_equal :enabled,
-                   BSD::Control.feature!(:mprotect).status(file)
+                   BSD::Control.feature(:mprotect).status(file)
     ensure
       rm(file)
     end
@@ -24,9 +24,9 @@ module BSD::Control
 
     def test_mprotect_disabled_status
       touch(file)
-      BSD::Control.feature!(:mprotect).disable!(file)
+      BSD::Control.feature(:mprotect).disable!(file)
       assert_equal :disabled,
-                   BSD::Control.feature!(:mprotect).status(file)
+                   BSD::Control.feature(:mprotect).status(file)
     ensure
       rm(file)
     end

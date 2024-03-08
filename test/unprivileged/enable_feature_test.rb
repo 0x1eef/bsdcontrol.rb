@@ -10,7 +10,7 @@ module BSD::Control
         BSD::Control::Error,
         "This operation requires root privileges."
       ) do
-        BSD::Control.feature!(:mprotect).enable!(file)
+        BSD::Control.feature(:mprotect).enable!(file)
       end
     ensure
       rm(file)

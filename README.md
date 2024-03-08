@@ -33,7 +33,7 @@ The example enables the mprotect feature for the emacs binary:
 # As a root account
 require 'hbsdctl'
 BSD::Control
-  .feature!(:mprotect)
+  .feature(:mprotect)
   .enable!("/usr/local/bin/emacs-29.2")
 ```
 

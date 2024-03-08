@@ -18,7 +18,7 @@ module BSD::Control
   ##
   # @example
   #   BSD::Control
-  #     .feature!(:mprotect)
+  #     .feature(:mprotect)
   #     .enable!("/usr/local/bin/firefox")
   #
   # @param [String] name
@@ -29,7 +29,7 @@ module BSD::Control
   #
   # @return [BSD::Control::Feature]
   #  Returns an instance of BSD::Control::Feature.
-  def self.feature!(name)
+  def self.feature(name)
     feature = Feature.available.find { _1.name == name.to_s }
     feature ? feature : raise(Error, "feature '#{name}' wasn't found")
   end
