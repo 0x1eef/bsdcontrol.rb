@@ -1,9 +1,9 @@
 ## About
 
-hbsdctl.rb is a Ruby C extension that binds libhbsdcontrol from the
-[hardenedbsd](https://hardenedbsd.org) project. Through this library,
-you can query what features are available and if root, enable or disable
-those features for a given file.
+hbsdctl.rb is a C extension that binds libhbsdcontrol from the
+[hardenedbsd](https://hardenedbsd.org) project to Ruby. Through
+this library, you can query what features are available and if
+root, enable or disable those features for a given file.
 
 ## Examples
 
@@ -34,8 +34,13 @@ The example enables the mprotect feature for the emacs binary:
 require 'hbsdctl'
 BSD::Control
   .feature!(:mprotect)
-  .enable!("/usr/local/bin/emacs")
+  .enable!("/usr/local/bin/emacs-29.2")
 ```
+
+## Documentation
+
+A complete API reference is available at
+[0x1eef.github.io/x/hbsdctl.rb](https://0x1eef.github.io/x/hbsdctl.rb).
 
 ## Install
 
