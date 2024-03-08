@@ -1,5 +1,8 @@
 #include <libhbsdcontrol.h>
 #include <ruby.h>
+#include <sys/extattr.h>
+#include <libutil.h>
+#include <errno.h>
 #include "include/ffi.h"
 
 /**
@@ -53,6 +56,43 @@ ffi_reset(VALUE self, VALUE rb_feature, VALUE rb_path)
   r = hbsdcontrol_extattr_rm_attr(path, disable_flag);
   r &= hbsdcontrol_extattr_rm_attr(path, enable_flag);
   return (r == 0 ? Qtrue : Qfalse);
+}
+
+
+/**
+ * BSD::Control::FFI.status
+ **/
+VALUE
+ffi_status(VALUE self, VALUE rb_feature, VALUE rb_path)
+{
+  VALUE rb_enable_flag, rb_disable_flag;
+  char *enable_flag, *disable_flag, *path, enable_data[2], disable_data[2];
+  int namespace;
+
+  rb_enable_flag = rb_funcall(rb_feature, rb_intern("enable"), 0);
+  rb_disable_flag = rb_funcall(rb_feature, rb_intern("disable"), 0);
+  Check_Type(rb_path, T_STRING);
+  Check_Type(rb_enable_flag, T_STRING);
+  Check_Type(rb_disable_flag, T_STRING);
+  path = RSTRING_PTR(rb_path);
+  enable_flag = RSTRING_PTR(rb_enable_flag);
+  disable_flag = RSTRING_PTR(rb_disable_flag);
+  if (extattr_string_to_namespace("system", &namespace) == -1) {
+    rb_syserr_fail(errno, "extattr_string_to_namespace");
+  }
+  if (extattr_get_file(path, namespace, enable_flag, &enable_data, 2) == -1) {
+    rb_syserr_fail(errno, "extattr_get_file");
+  }
+  if (extattr_get_file(path, namespace, disable_flag, &disable_data, 2) == -1) {
+    rb_syserr_fail(errno, "extattr_get_file");
+  }
+  if (strcmp(enable_data, disable_data) == 0) {
+    return (ID2SYM(rb_intern("conflict")));
+  } else if (strcmp(enable_data, "1") == 0) {
+    return (ID2SYM(rb_intern("enabled")));
+  } else {
+    return (ID2SYM(rb_intern("disabled")));
+  }
 }
 
 

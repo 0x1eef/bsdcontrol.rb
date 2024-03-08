@@ -15,5 +15,6 @@ Init_hbsdctl(void)
   rb_define_singleton_method(rb_mFFI, "available_features", ffi_available_features, 0);
   rb_define_singleton_method(rb_mFFI, "library_version", ffi_library_version, 0);
   rb_define_singleton_method(rb_mFFI, "reset!", ffi_reset, 2);
+  rb_define_singleton_method(rb_mFFI, "status", ffi_status, 2);
   rb_define_private_method(rb_cFeature, "set!", feature_set, 2);
 }

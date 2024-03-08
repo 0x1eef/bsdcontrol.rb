@@ -55,6 +55,47 @@ module BSD::Control
       FFI.reset!(self, path)
     end
 
+    ##
+    # @return [Boolean]
+    #  Returns true when a feature is enabled.
+    def enabled?(path)
+      status(path) == :enabled
+    end
+
+    ##
+    # @return [Boolean]
+    #  Returns true when a feature is disabled.
+    def disabled?(path)
+      status(path) == :disabled
+    end
+
+    ##
+    # @return [Boolean]
+    #  Returns true when a feature is configured to use the system default.
+    def sysdef?(path)
+      status(path) == :sysdef
+    end
+
+    ##
+    # @return [Boolean]
+    #  Returns true when a feature is in conflict
+    #  (i.e: the feature is both enabled and disabled at the same time).
+    def conflict?(path)
+      status(path) == :conflict
+    end
+
+    ##
+    # @param [String] path
+    #  The path to a file.
+    # @return [Symbol]
+    #  Returns the feature status of a file.
+    #  Status can be one of: `:conflict`, `:sysdef`, `:enabled`, `:disabled`.
+    def status(path)
+      FFI.status(self, path)
+    rescue Errno::ENOATTR
+      :sysdef
+    end
+
     # @endgroup
 
     ##
