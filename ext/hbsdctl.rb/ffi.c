@@ -87,9 +87,9 @@ ffi_status(VALUE self, VALUE rb_feature, VALUE rb_path)
       2) == -1) {
     rb_syserr_fail(errno, "extattr_get_file");
   }
-  if (strcmp(enable_data, disable_data) == 0) {
+  if (strncmp(enable_data, disable_data, 1) == 0) {
     return (ID2SYM(rb_intern("conflict")));
-  } else if (strcmp(enable_data, "1") == 0) {
+  } else if (strncmp(enable_data, "1", 1) == 0) {
     return (ID2SYM(rb_intern("enabled")));
   } else {
     return (ID2SYM(rb_intern("disabled")));
