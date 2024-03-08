@@ -1,6 +1,6 @@
 require_relative "../setup"
 module BSD::Control
-  class EnableFeatureTest < Test::Unit::TestCase
+  class FeatureStatusTest < Test::Unit::TestCase
     require 'fileutils'
     include FileUtils
 
