@@ -70,8 +70,8 @@ ffi_status(VALUE self, VALUE rb_feature, VALUE rb_path)
   int ns;
 
   options = __options_init(rb_feature, rb_path);
-  if (extattr_string_to_ns("system", &ns) == -1) {
-    rb_syserr_fail(errno, "extattr_string_to_ns");
+  if (extattr_string_to_namespace("system", &ns) == -1) {
+    rb_syserr_fail(errno, "extattr_string_to_namespace");
   }
   if (
     extattr_get_file(
