@@ -3,19 +3,21 @@
 hbsdctl.rb is a C extension that binds libhbsdcontrol from the
 [hardenedbsd](https://hardenedbsd.org) project to Ruby. Through
 this library, you can query what features are available and if
-root, enable or disable those features for a given file.
+root: enable, disable or query the status of a feature for a
+given file.
 
 ## Examples
 
-__Available features__
+__Features__
 
 As a regular user account, you can obtain a list of available features.
-But to enable or disable those features a superuser account is required:
+But to enable, disable or query the status of a feature for a given file
+a superuser account is required:
 
 ``` ruby
 #!/usr/bin/env ruby
 # As a regular user account
-require 'hbsdctl'
+require "hbsdctl"
 BSD::Control
   .available_features
   .each do
@@ -23,18 +25,35 @@ BSD::Control
 end
 ```
 
-__Enable feature__
+__Enable__
 
-As a superuser account, you can enable or disable features for a given file.
+As a superuser account, you can enable or disable a feature for a given file.
 The example enables the mprotect feature for the emacs binary:
 
 ``` ruby
 #!/usr/bin/env ruby
-# As a root account
-require 'hbsdctl'
+# As a superuser account
+require "hbsdctl"
 BSD::Control
   .feature(:mprotect)
   .enable!("/usr/local/bin/emacs-29.2")
+```
+
+__Status__
+
+As a superuser account, you can query whether or not a feature is enabled or disabled
+for a given file. There are four statuses that can be returned: `conflict`, `sysdef`,
+`enabled`, and `disabled`. The first status (conflict) is rare and indicates that a
+feature is both enabled and disabled. The other three are more common. The `sysdef`
+status indicates that a feature takes its settings from the system default (sysctl):
+
+``` ruby
+#!/usr/bin/env ruby
+# As a superuser account
+require "hbsdctl"
+BSD::Control
+  .feature(:mprotect)
+  .status("/bin/ls") # => :sysdef
 ```
 
 ## Documentation
@@ -47,6 +66,7 @@ A complete API reference is available at
 **Git**
 
 hbsdctl.rb is distributed as a RubyGem through its git repositories. <br>
+[git.hardenedbsd.org](https://git.hardenedbsd.org/0x1eef/hbsdctl.rb),
 [GitHub](https://github.com/0x1eef/hbsdctl.rb),
 and
 [GitLab](https://gitlab.com/0x1eef/hbsdctl.rb)
