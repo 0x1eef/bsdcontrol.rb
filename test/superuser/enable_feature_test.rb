@@ -12,6 +12,15 @@ module BSD::Control
       rm(file)
     end
 
+    def test_enable_mprotect_zero_permissions
+      touch(file)
+      chmod(0, file)
+      assert BSD::Control.feature!(:mprotect).enable!(file),
+             "The enable! method should have returned true"
+    ensure
+      rm(file)
+    end
+
     def test_enable_mprotect_nonexistent_file
       assert_raises(BSD::Control::Error) do
         BSD::Control.feature!(:mprotect).enable!(file)

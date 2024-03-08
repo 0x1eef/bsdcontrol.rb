@@ -1,6 +1,11 @@
 #!/bin/sh
 set -e
-rake clean clobber compile
-for file in test/unprivileged/*_test.rb; do
-    ruby -Ilib ${file} --no-use-color
-done
+if [ $(id -u) -ne 0 ]; then
+    rake clean clobber compile
+    for file in test/unprivileged/*_test.rb; do
+        ruby -Ilib ${file} --no-use-color
+    done
+else
+    echo "You must be an unprivileged user to run these tests."
+    exit 1
+fi
