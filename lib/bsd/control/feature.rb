@@ -16,8 +16,8 @@ module BSD::Control
     # @param [String] path
     #  The path to a file.
     #
-    # @raise [BSD::Control::Error]
-    #  When the operation fails.
+    # @raise [SystemCallError]
+    #  Might raise a number of Errno exceptions.
     #
     # @return [Boolean]
     #  Returns true on success.
@@ -31,8 +31,8 @@ module BSD::Control
     # @param [String] path
     #  The path to a file.
     #
-    # @raise [BSD::Control::Error]
-    #  When the operation fails.
+    # @raise [SystemCallError]
+    #  Might raise a number of Errno exceptions.
     #
     # @return [Boolean]
     #  Returns true on success.

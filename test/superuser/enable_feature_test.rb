@@ -22,7 +22,7 @@ module BSD::Control
     end
 
     def test_enable_mprotect_nonexistent_file
-      assert_raises(BSD::Control::Error) do
+      assert_raises(Errno::ENOENT) do
         BSD::Control.feature(:mprotect).enable!(file)
       end
     end
