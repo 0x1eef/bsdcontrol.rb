@@ -73,6 +73,7 @@ ffi_status(VALUE self, VALUE rb_feature, VALUE rb_path)
   char enable_data[2], disable_data[2];
   int ns;
 
+  errno = 0;
   options = __options_init(rb_feature, rb_path);
   if (extattr_string_to_namespace("system", &ns) == -1) {
     rb_syserr_fail(errno, "extattr_string_to_namespace");

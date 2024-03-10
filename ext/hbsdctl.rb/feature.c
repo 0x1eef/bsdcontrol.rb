@@ -20,6 +20,7 @@ feature_set(VALUE self, VALUE rb_path, VALUE rb_state)
 static VALUE
 __set(VALUE rb_path, VALUE rb_feature, VALUE rb_state)
 {
+  errno = 0;
   int result = hbsdcontrol_set_feature_state(
     RSTRING_PTR(rb_path),
     RSTRING_PTR(rb_feature),
