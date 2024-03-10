@@ -1,8 +1,6 @@
 #include <libhbsdcontrol.h>
-#include <unistd.h>
 #include <errno.h>
 #include "include/feature.h"
-static VALUE __rb_eError(void);
 static VALUE __set(VALUE, VALUE, VALUE);
 
 /**
@@ -32,14 +30,4 @@ __set(VALUE rb_path, VALUE rb_feature, VALUE rb_state)
   } else {
     rb_syserr_fail(errno, "hbsdcontrol_set_feature_state");
   }
-}
-
-
-static VALUE
-__rb_eError(void)
-{
-  VALUE rb_mBSD = rb_const_get(rb_cObject, rb_intern("BSD")),
-    rb_mControl = rb_const_get(rb_mBSD, rb_intern("Control")),
-    rb_eError = rb_const_get(rb_mControl, rb_intern("Error"));
-  return (rb_eError);
 }

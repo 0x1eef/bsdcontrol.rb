@@ -5,7 +5,7 @@ module BSD::Control
     include FileUtils
 
     def test_disable_mprotect_nonexistent_file
-      assert_raises Errno::ENOENT do
+      assert_raises(Errno::ENOENT) do
         BSD::Control.feature(:mprotect).disable!(file)
       end
     end

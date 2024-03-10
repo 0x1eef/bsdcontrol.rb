@@ -10,9 +10,7 @@ given file.
 
 __Features__
 
-As a regular user account, you can obtain a list of available features.
-But to enable, disable or query the status of a feature for a given file
-a superuser account is required:
+As a regular user account, you can obtain a list of available features:
 
 ``` ruby
 #!/usr/bin/env ruby
@@ -61,16 +59,13 @@ BSD::Control
 A complete API reference is available at
 [0x1eef.github.io/x/hbsdctl.rb](https://0x1eef.github.io/x/hbsdctl.rb).
 
+## Sources
+
+* [GitHub](https://github.com/0x1eef/hbsdctl.rb)
+* [GitLab](https://gitlab.com/0x1eef/hbsdctl.rb)
+* [git.hardenedbsd.org](https://git.hardenedbsd.org/0x1eef/hbsdctl.rb)
+
 ## Install
-
-**Git**
-
-hbsdctl.rb is distributed as a RubyGem through its git repositories. <br>
-[git.hardenedbsd.org](https://git.hardenedbsd.org/0x1eef/hbsdctl.rb),
-[GitHub](https://github.com/0x1eef/hbsdctl.rb),
-and
-[GitLab](https://gitlab.com/0x1eef/hbsdctl.rb)
-are available as sources.
 
 **Rubygems.org**
 
