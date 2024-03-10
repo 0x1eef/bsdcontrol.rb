@@ -50,12 +50,16 @@ VALUE
 ffi_sysdef(VALUE self, VALUE rb_feature, VALUE rb_path)
 {
   struct Options options;
-  int r;
-
+  int result;
+  errno = 0;
   options = __options_init(rb_feature, rb_path);
-  r = hbsdcontrol_extattr_rm_attr(options.path, options.disable_flag);
-  r &= hbsdcontrol_extattr_rm_attr(options.path, options.enable_flag);
-  return (r == 0 ? Qtrue : Qfalse);
+  result = hbsdcontrol_extattr_rm_attr(options.path, options.disable_flag) == 0 &&
+    hbsdcontrol_extattr_rm_attr(options.path, options.enable_flag) == 0;
+  if (result) {
+    return (Qtrue);
+  } else {
+    rb_syserr_fail(errno, "hbsdcontrol_extattr_rm_attr");
+  }
 }
 
 

@@ -1,6 +1,6 @@
 require_relative "../setup"
 module BSD::Control
-  class FeatureBangTest < Test::Unit::TestCase
+  class FeatureTest < Test::Unit::TestCase
     def test_mprotect_feature
       assert_instance_of BSD::Control::Feature,
                          BSD::Control.feature(:mprotect)
