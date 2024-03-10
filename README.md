@@ -59,12 +59,6 @@ BSD::Control
 A complete API reference is available at
 [0x1eef.github.io/x/hbsdctl.rb](https://0x1eef.github.io/x/hbsdctl.rb).
 
-## Sources
-
-* [GitHub](https://github.com/0x1eef/hbsdctl.rb)
-* [GitLab](https://gitlab.com/0x1eef/hbsdctl.rb)
-* [git.hardenedbsd.org](https://git.hardenedbsd.org/0x1eef/hbsdctl.rb)
-
 ## Install
 
 **Rubygems.org**
@@ -72,6 +66,12 @@ A complete API reference is available at
 hbsdctl.rb can also be installed via rubygems.org.
 
     gem install hbsdctl.rb
+
+## Sources
+
+* [GitHub](https://github.com/0x1eef/hbsdctl.rb)
+* [GitLab](https://gitlab.com/0x1eef/hbsdctl.rb)
+* [git.hardenedbsd.org](https://git.hardenedbsd.org/0x1eef/hbsdctl.rb)
 
 ## License
 
