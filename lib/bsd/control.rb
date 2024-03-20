@@ -42,7 +42,4 @@ module BSD::Control
     feature = available_features.find { _1.name == name.to_s }
     feature ? feature : raise(Error, "feature '#{name}' wasn't found")
   end
-
-  module FFI
-  end
 end

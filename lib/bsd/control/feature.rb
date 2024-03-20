@@ -52,7 +52,7 @@ module BSD::Control
     # @return [Boolean]
     #  Returns true on success.
     def sysdef!(path)
-      FFI.sysdef!(self, path)
+      # FIXME: implement.
     end
 
     # @endgroup
@@ -102,20 +102,17 @@ module BSD::Control
     end
 
     ##
-    # @param [String] path
-    #  The path to a file.
+    # @!method status(path)
+    #   @param [String] path
+    #     The path to a file.
     #
-    # @raise [SystemCallError]
-    #  Might raise a number of Errno exceptions.
+    #   @raise [SystemCallError]
+    #     Might raise a number of Errno exceptions.
     #
-    # @return [Symbol]
-    #  Returns the status of a feature for a given file.
-    #  Status can be one of: `:conflict`, `:sysdef`, `:enabled`, `:disabled`.
-    def status(path)
-      FFI.status(self, path)
-    rescue Errno::ENOATTR
-      :sysdef
-    end
+    #   @return [Symbol]
+    #     Returns the status of a feature for a given file.
+    #     Status could be: `:unknown`, `:enabled`, `:disabled`,
+    #     `:sysdef`, or `:invalid`.
 
     # @endgroup
 
