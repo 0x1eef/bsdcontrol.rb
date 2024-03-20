@@ -3,8 +3,8 @@
 bsdcontrol.rb provides Ruby bindings for libhbsdcontrol from the
 [hardenedbsd](https://hardenedbsd.org) project. Through
 this library, you can query what features are available and if
-root: enable, disable or query the status of a feature for a
-given file.
+root: enable or disable a feature for a given file, or restore
+the system default for a given file.
 
 ## Examples
 
@@ -27,7 +27,9 @@ end
 __Enable__
 
 As a superuser, you can enable or disable a feature for a given file.
-The example enables the mprotect feature for the emacs binary:
+The example enables the mprotect feature for the emacs binary. When
+a feature is enabled for a given file, that setting takes precendence
+over the system default (sysctl):
 
 ``` ruby
 #!/usr/bin/env ruby
@@ -41,10 +43,9 @@ BSD::Control
 __Status__
 
 As a superuser, you can query the status of a feature for a given file.
-There are four statuses that can be returned: `conflict`, `sysdef`,
-`enabled`, and `disabled`. The first status (conflict) is rare and indicates that a
-feature is both enabled and disabled. The other three are more common. The `sysdef`
-status indicates that a feature takes its settings from the system default (sysctl):
+There are five recognized statuses: `unknown`, `enabled`, `disabled`,
+`sysdef`, and `invalid`. The `sysdef` status indicates that a feature takes
+its settings from the system default (sysctl), and is the most common status:
 
 ``` ruby
 #!/usr/bin/env ruby
