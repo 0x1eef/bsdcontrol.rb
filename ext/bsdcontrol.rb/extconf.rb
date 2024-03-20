@@ -1,3 +1,3 @@
 require 'mkmf'
 $LIBS << ' -lsbuf -lhbsdcontrol'
-create_makefile("hbsdctl.rb")
+create_makefile("bsdcontrol.rb")

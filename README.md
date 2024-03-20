@@ -1,6 +1,6 @@
 ## About
 
-hbsdctl.rb provides Ruby bindings for libhbsdcontrol from the
+bsdcontrol.rb provides Ruby bindings for libhbsdcontrol from the
 [hardenedbsd](https://hardenedbsd.org) project. Through
 this library, you can query what features are available and if
 root: enable, disable or query the status of a feature for a
@@ -58,21 +58,21 @@ BSD::Control
 ## Documentation
 
 A complete API reference is available at
-[0x1eef.github.io/x/hbsdctl.rb](https://0x1eef.github.io/x/hbsdctl.rb).
+[0x1eef.github.io/x/bsdcontrol.rb](https://0x1eef.github.io/x/bsdcontrol.rb).
 
 ## Install
 
 **Rubygems.org**
 
-hbsdctl.rb can be installed via rubygems.org.
+bsdcontrol.rb can be installed via rubygems.org.
 
-    gem install hbsdctl.rb
+    gem install bsdcontrol.rb
 
 ## Sources
 
-* [GitHub](https://github.com/0x1eef/hbsdctl.rb)
-* [GitLab](https://gitlab.com/0x1eef/hbsdctl.rb)
-* [git.hardenedbsd.org](https://git.hardenedbsd.org/0x1eef/hbsdctl.rb)
+* [GitHub](https://github.com/0x1eef/bsdcontrol.rb)
+* [GitLab](https://gitlab.com/0x1eef/bsdcontrol.rb)
+* [git.hardenedbsd.org](https://git.hardenedbsd.org/0x1eef/bsdcontrol.rb)
 
 ## License
 

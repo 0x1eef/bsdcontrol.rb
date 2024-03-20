@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hbsdctl.rb (0.1.0)
+    bsdcontrol.rb (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -18,7 +18,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  hbsdctl.rb!
+  bsdcontrol.rb!
   rake-compiler (= 1.2.0)
   test-unit (~> 3.6)
 

@@ -1,12 +1,12 @@
 require "bundler/setup"
 require "rake/extensiontask"
-Rake::ExtensionTask.new("hbsdctl.rb")
+Rake::ExtensionTask.new("bsdcontrol.rb")
 task default: %w[clobber compile test]
 
 desc "Run C linter"
 namespace :clang do
   task :format do
-    sh "clang-format -style=file:.clang-format -i ext/hbsdctl.rb/*.c"
+    sh "clang-format -style=file:.clang-format -i ext/bsdcontrol.rb/*.c"
   end
 end
 

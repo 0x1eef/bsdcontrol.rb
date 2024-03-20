@@ -1,4 +1,4 @@
 module BSD
   require_relative "bsd/control"
-  require_relative "hbsdctl.rb.so"
+  require_relative "bsdcontrol.rb.so"
 end

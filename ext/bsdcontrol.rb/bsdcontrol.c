@@ -4,7 +4,7 @@
 #include "feature.h"
 
 void
-Init_hbsdctl(void)
+Init_bsdcontrol(void)
 {
   VALUE rb_mBSD     = rb_const_get(rb_cObject, rb_intern("BSD")),
         rb_mControl = rb_const_get(rb_mBSD, rb_intern("Control")),
