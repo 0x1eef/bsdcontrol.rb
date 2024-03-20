@@ -66,3 +66,31 @@ bsdcontrol_feature_set(VALUE self, VALUE path, VALUE rbstate)
     return Qtrue;
   }
 }
+
+/*
+ * BSD::Control::Feature#sysdef!
+ */
+VALUE
+bsdcontrol_feature_sysdef(VALUE self, VALUE path)
+{
+  int fd;
+  VALUE rbcontext;
+  hbsdctrl_feature_t *feature;
+  hbsdctrl_ctx_t *ctx;
+  rbcontext = rb_funcall(self, rb_intern("context"), 0);
+  fd        = bsdcontrol_open(path);
+  ctx       = bsdcontrol_unwrap(rbcontext);
+  feature   = bsdcontrol_find_feature(ctx, self);
+  errno     = 0;
+  if (feature->hf_unapply(ctx, feature, &fd, NULL) == RES_FAIL)
+  {
+    close(fd);
+    errno == 0 ? rb_raise(rb_eSystemCallError, "hf_unapply")
+               : rb_syserr_fail(errno, "hf_unapply");
+  }
+  else
+  {
+    close(fd);
+    return Qtrue;
+  }
+}

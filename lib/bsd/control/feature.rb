@@ -41,19 +41,17 @@ module BSD::Control
     end
 
     ##
-    # Restore system defaults for a given file.
+    # @!method sysdef!(path)
+    #   Restore system defaults for a given file.
     #
-    # @param [String] path
-    #  The path to a file.
+    #   @param [String] path
+    #     The path to a file.
     #
-    # @raise [SystemCallError]
-    #  Might raise a number of Errno exceptions.
+    #   @raise [SystemCallError]
+    #     Might raise a number of Errno exceptions.
     #
-    # @return [Boolean]
-    #  Returns true on success.
-    def sysdef!(path)
-      # FIXME: implement.
-    end
+    #   @return [Boolean]
+    #     Returns true on success.
 
     # @endgroup
 
