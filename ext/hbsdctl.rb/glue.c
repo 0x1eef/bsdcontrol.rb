@@ -8,6 +8,7 @@ int
 bsdcontrol_open(VALUE path)
 {
   int fd;
+  Check_Type(path, T_STRING);
   fd = open(RSTRING_PTR(path), O_PATH);
   if (fd == -1)
   {
