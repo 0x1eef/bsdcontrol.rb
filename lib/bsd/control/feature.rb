@@ -93,10 +93,10 @@ module BSD::Control
     #  The path to a file.
     #
     # @return [Boolean]
-    #  Returns true when a feature is in conflict
-    #  (i.e: the feature is both enabled and disabled at the same time).
-    def conflict?(path)
-      status(path) == :conflict
+    #  Returns true when a feature is in an invalid state
+    #  (eg: the feature is both enabled and disabled at the same time).
+    def invalid?(path)
+      status(path) == :invalid
     end
 
     ##
