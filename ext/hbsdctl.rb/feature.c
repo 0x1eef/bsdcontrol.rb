@@ -25,7 +25,7 @@ bsdcontrol_feature_status(VALUE self, VALUE path)
   if (feature->hf_get(ctx, feature, &fd, &state) == RES_FAIL)
   {
     close(fd);
-    errno == 0 ? rb_raise(rb_eRuntimeError, "hf_get")
+    errno == 0 ? rb_raise(rb_eSystemCallError, "hf_get")
                : rb_syserr_fail(errno, "hf_get");
   }
   else
@@ -57,7 +57,7 @@ bsdcontrol_feature_set(VALUE self, VALUE path, VALUE rbstate)
   if (feature->hf_apply(ctx, feature, &fd, &state) == RES_FAIL)
   {
     close(fd);
-    errno == 0 ? rb_raise(rb_eRuntimeError, "hf_apply")
+    errno == 0 ? rb_raise(rb_eSystemCallError, "hf_apply")
                : rb_syserr_fail(errno, "hf_apply");
   }
   else
