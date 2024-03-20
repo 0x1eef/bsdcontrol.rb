@@ -4,26 +4,26 @@ module BSD::Control
     require 'fileutils'
     include FileUtils
 
-    def test_enable_mprotect
+    def test_enable_pageexec
       touch(file)
-      assert BSD::Control.feature(:mprotect).enable!(file),
+      assert BSD::Control.feature(:pageexec).enable!(file),
              "The enable! method should have returned true"
     ensure
       rm(file)
     end
 
-    def test_enable_mprotect_zero_permissions
+    def test_enable_pageexec_zero_permissions
       touch(file)
       chmod(0, file)
-      assert BSD::Control.feature(:mprotect).enable!(file),
+      assert BSD::Control.feature(:pageexec).enable!(file),
              "The enable! method should have returned true"
     ensure
       rm(file)
     end
 
-    def test_enable_mprotect_nonexistent_file
+    def test_enable_pageexec_nonexistent_file
       assert_raises(Errno::ENOENT) do
-        BSD::Control.feature(:mprotect).enable!(file)
+        BSD::Control.feature(:pageexec).enable!(file)
       end
     end
 

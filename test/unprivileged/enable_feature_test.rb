@@ -7,7 +7,7 @@ module BSD::Control
     def test_enable_feature_lacks_privileges
       touch(file)
       assert_raises(Errno::EPERM) do
-        BSD::Control.feature(:mprotect).enable!(file)
+        BSD::Control.feature(:pageexec).enable!(file)
       end
     ensure
       rm(file)

@@ -4,29 +4,29 @@ module BSD::Control
     require 'fileutils'
     include FileUtils
 
-    def test_mprotect_sysdef_status
+    def test_pageexec_sysdef_status
       touch(file)
       assert_equal :sysdef,
-                   BSD::Control.feature(:mprotect).status(file)
+                   BSD::Control.feature(:pageexec).status(file)
     ensure
       rm(file)
     end
 
-    def test_mprotect_enabled_status
+    def test_pageexec_enabled_status
       touch(file)
-      BSD::Control.feature(:mprotect).enable!(file)
+      BSD::Control.feature(:pageexec).enable!(file)
       assert_equal :enabled,
-                   BSD::Control.feature(:mprotect).status(file)
+                   BSD::Control.feature(:pageexec).status(file)
     ensure
       rm(file)
     end
 
 
-    def test_mprotect_disabled_status
+    def test_pageexec_disabled_status
       touch(file)
-      BSD::Control.feature(:mprotect).disable!(file)
+      BSD::Control.feature(:pageexec).disable!(file)
       assert_equal :disabled,
-                   BSD::Control.feature(:mprotect).status(file)
+                   BSD::Control.feature(:pageexec).status(file)
     ensure
       rm(file)
     end

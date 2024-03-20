@@ -4,9 +4,9 @@ module BSD::Control
     require 'fileutils'
     include FileUtils
 
-    def test_disable_mprotect_nonexistent_file
+    def test_disable_pageexec_nonexistent_file
       assert_raises(Errno::ENOENT) do
-        BSD::Control.feature(:mprotect).disable!(file)
+        BSD::Control.feature(:pageexec).disable!(file)
       end
     end
 

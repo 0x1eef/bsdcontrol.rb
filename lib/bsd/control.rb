@@ -1,19 +1,27 @@
 module BSD::Control
+  require_relative "control/context"
   require_relative "control/feature"
   Error = Class.new(RuntimeError)
+
+  ##
+  # @return [BSD::Control::Context]
+  #  Returns an instance of {BSD::Control::Context BSD::Control::Context}.
+  def self.context
+    @context ||= BSD::Control::Context.new
+  end
 
   ##
   # @return [String]
   #  Returns the version of libhbsdcontrol.
   def self.library_version
-    FFI.library_version
+    context.library_version
   end
 
   ##
   # @return [Array<BSD::Control::Feature>]
   #  Returns an array of available features.
   def self.available_features
-    Feature.available
+    context.available_features
   end
 
   ##

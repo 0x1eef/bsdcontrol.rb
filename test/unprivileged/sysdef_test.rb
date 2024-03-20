@@ -7,7 +7,7 @@ module BSD::Control
     def test_sysdef!_lacks_privileges
       touch(file)
       assert_raises(Errno::EPERM) do
-        BSD::Control.feature(:mprotect).sysdef!(file)
+        BSD::Control.feature(:pageexec).sysdef!(file)
       end
     ensure
       rm(file)

@@ -1,10 +1,10 @@
 module BSD::Control
-  class Feature < Struct.new(:name, :enable, :disable)
+  class Feature < Struct.new(:name, :context)
     ##
     # @return [Array<BSD::Control::Feature>]
     #  Returns an array of available features.
     def self.available
-      BSD::Control::FFI.available_features
+      BSD::Control.available_features
     end
 
     ##
@@ -22,7 +22,7 @@ module BSD::Control
     # @return [Boolean]
     #  Returns true on success.
     def enable!(path)
-      set!(path, BSD::Control::Enable)
+      set!(path, 1)
     end
 
     ##
@@ -37,7 +37,7 @@ module BSD::Control
     # @return [Boolean]
     #  Returns true on success.
     def disable!(path)
-      set!(path, BSD::Control::Disable)
+      set!(path, 0)
     end
 
     ##

@@ -4,8 +4,10 @@ Rake::ExtensionTask.new("hbsdctl.rb")
 task default: %w[clobber compile test]
 
 desc "Run C linter"
-task :styleguide do
-  sh "uncrustify -c .styleguide.cfg --no-backup ext/hbsdctl.rb/*.c"
+namespace :clang do
+  task :format do
+    sh "clang-format -style=file:.clang-format -i ext/hbsdctl.rb/*.c"
+  end
 end
 
 namespace :test do
