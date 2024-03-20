@@ -62,6 +62,7 @@ bsdcontrol_feature_set(VALUE self, VALUE path, VALUE rbstate)
   }
   else
   {
+    close(fd);
     return Qtrue;
   }
 }
