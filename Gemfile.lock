@@ -8,7 +8,7 @@ GEM
   specs:
     power_assert (2.0.3)
     rake (13.1.0)
-    rake-compiler (1.2.0)
+    rake-compiler (1.2.7)
       rake
     test-unit (3.6.2)
       power_assert
@@ -19,7 +19,7 @@ PLATFORMS
 
 DEPENDENCIES
   bsdcontrol.rb!
-  rake-compiler (= 1.2.0)
+  rake-compiler (~> 1.2)
   test-unit (~> 3.6)
 
 BUNDLED WITH
