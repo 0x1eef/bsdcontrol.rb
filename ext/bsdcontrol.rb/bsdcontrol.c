@@ -20,4 +20,6 @@ Init_bsdcontrol(void)
   rb_define_method(rb_cFeature, "status", bsdcontrol_feature_status, 1);
   rb_define_method(rb_cFeature, "sysdef!", bsdcontrol_feature_sysdef, 1);
   rb_define_private_method(rb_cFeature, "set!", bsdcontrol_feature_set, 2);
+  rb_define_const(rb_cFeature, "ENABLED", INT2NUM(HBSDCTRL_STATE_ENABLED));
+  rb_define_const(rb_cFeature, "DISABLED", INT2NUM(HBSDCTRL_STATE_DISABLED));
 }

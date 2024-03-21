@@ -22,7 +22,7 @@ module BSD::Control
     # @return [Boolean]
     #  Returns true on success.
     def enable!(path)
-      set!(path, 1)
+      set!(path, ENABLED)
     end
 
     ##
@@ -37,7 +37,7 @@ module BSD::Control
     # @return [Boolean]
     #  Returns true on success.
     def disable!(path)
-      set!(path, 0)
+      set!(path, DISABLED)
     end
 
     ##
