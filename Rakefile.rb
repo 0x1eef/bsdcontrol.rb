@@ -3,8 +3,8 @@ require "rake/extensiontask"
 Rake::ExtensionTask.new("bsdcontrol.rb")
 task default: %w[clobber compile test]
 
-desc "Run C linter"
 namespace :clang do
+  desc "Run clang-format"
   task :format do
     sh "clang-format -style=file:.clang-format -i ext/bsdcontrol.rb/*.c"
   end
