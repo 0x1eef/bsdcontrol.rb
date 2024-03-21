@@ -9,14 +9,14 @@ module BSD::Control
       assert BSD::Control.feature(:pageexec).enable!(file),
              "The enable! method should have returned true"
       assert_equal(
-        BSD::Control.feature(:pageexec).status(file),
-        :enabled
+        :enabled,
+        BSD::Control.feature(:pageexec).status(file)
       )
       assert BSD::Control.feature(:pageexec).sysdef!(file),
              "The sysdef! method should have returned true"
       assert_equal(
-        BSD::Control.feature(:pageexec).status(file),
-        :sysdef
+        :sysdef,
+        BSD::Control.feature(:pageexec).status(file)
       )
     ensure
       rm(file)
