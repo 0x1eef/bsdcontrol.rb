@@ -1,17 +1,14 @@
 ## About
 
 bsdcontrol.rb provides Ruby bindings for libhbsdcontrol from the
-[hardenedbsd](https://hardenedbsd.org) project. Through
-this library, you can query what features are available and if
-root: enable or disable a feature for a given file, or restore
-the system default for a given file.
+[hardenedbsd](https://hardenedbsd.org) project.
 
 ## Examples
 
 __Features__
 
-As an unprivileged user or as a superuser, you can obtain a list of
-available features:
+The first example obtains a list of hardenedbsd features that
+can be enabled, disabled or restored to the system default:
 
 ``` ruby
 #!/usr/bin/env ruby
@@ -26,10 +23,10 @@ end
 
 __Enable__
 
-As a superuser, you can enable or disable a feature for a given file.
-The example enables the mprotect feature for the emacs binary. When
+The following example enables the mprotect feature for the emacs binary. When
 a feature is enabled for a given file, that setting takes precendence
-over the system default (sysctl):
+over the system default. The system default can be restored with
+[BSD::Control::Feature#sysdef!](http://0x1eef.github.io/x/bsdcontrol.rb/BSD/Control/Feature.html#sysdef!-instance_method):
 
 ``` ruby
 #!/usr/bin/env ruby
@@ -42,10 +39,10 @@ BSD::Control
 
 __Status__
 
-As a superuser, you can query the status of a feature for a given file.
 There are five recognized statuses: `unknown`, `enabled`, `disabled`,
-`sysdef`, and `invalid`. The `sysdef` status indicates that a feature takes
-its settings from the system default (sysctl), and is the most common status:
+`sysdef`, and `invalid`. The `sysdef` status indicates that a feature
+is configured to use the system default, and it is the most common
+status:
 
 ``` ruby
 #!/usr/bin/env ruby
