@@ -14,9 +14,13 @@ bsdcontrol_context_alloc(VALUE klass)
   struct bsdcontrol_ctx_t *rbctx;
   ctx   = hbsdctrl_ctx_new(FLAGS, NAMESPACE);
   rbctx = calloc(1, sizeof(struct bsdcontrol_ctx_t));
-  if (ctx == NULL || rbctx == NULL)
+  if (ctx == NULL)
   {
-    rb_raise(rb_eRuntimeError, "...");
+    rb_raise(rb_eSystemCallError, "hbsdctrl_ctx_new");
+  }
+  else if (rbctx == NULL)
+  {
+    rb_raise(rb_eSystemCallError, "calloc");
   }
   rbctx->ctx = ctx;
   return Data_Wrap_Struct(klass, NULL, bsdcontrol_context_free, rbctx);
