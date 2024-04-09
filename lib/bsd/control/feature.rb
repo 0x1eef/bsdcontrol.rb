@@ -42,7 +42,7 @@ module BSD::Control
 
     ##
     # @!method sysdef!(path)
-    #   Restore system defaults for a given file.
+    #   Restores the system default for a given file.
     #
     #   @param [String] path
     #     The path to a file.

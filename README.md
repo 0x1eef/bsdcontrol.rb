@@ -8,12 +8,13 @@ bsdcontrol.rb provides Ruby bindings for libhbsdcontrol from the
 __Features__
 
 The first example obtains a list of hardenedbsd features that
-can be enabled, disabled or restored to the system default:
+can be enabled, disabled or restored to the system default
+setting:
 
 ``` ruby
 #!/usr/bin/env ruby
 # Required privileges: unprivileged user or superuser.
-require "hbsdctl"
+require "bsdcontrol"
 BSD::Control
   .available_features
   .each do
@@ -31,7 +32,7 @@ over the system default. The system default can be restored with
 ``` ruby
 #!/usr/bin/env ruby
 # Required privileges: superuser.
-require "hbsdctl"
+require "bsdcontrol"
 BSD::Control
   .feature(:mprotect)
   .enable!("/usr/local/bin/emacs-29.2")
@@ -47,7 +48,7 @@ status:
 ``` ruby
 #!/usr/bin/env ruby
 # Required privileges: superuser.
-require "hbsdctl"
+require "bsdcontrol"
 BSD::Control
   .feature(:mprotect)
   .status("/bin/ls") # => :sysdef
