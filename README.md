@@ -7,12 +7,12 @@ bsdcontrol.rb provides Ruby bindings for libhbsdcontrol from the
 
 __Features__
 
-The first example obtains a list of hardenedbsd features that
+The first example prints a list of hardenedbsd features that
 can be enabled, disabled or restored to the system default:
 
 ``` ruby
 #!/usr/bin/env ruby
-# Required privileges: unprivileged user or superuser.
+# Required privileges: user, superuser
 require "bsdcontrol"
 BSD::Control
   .available_features
@@ -30,7 +30,7 @@ over the system default. The system default can be restored with
 
 ``` ruby
 #!/usr/bin/env ruby
-# Required privileges: superuser.
+# Required privileges: superuser
 require "bsdcontrol"
 BSD::Control
   .feature(:mprotect)
@@ -46,7 +46,7 @@ status:
 
 ``` ruby
 #!/usr/bin/env ruby
-# Required privileges: superuser.
+# Required privileges: superuser
 require "bsdcontrol"
 BSD::Control
   .feature(:mprotect)
