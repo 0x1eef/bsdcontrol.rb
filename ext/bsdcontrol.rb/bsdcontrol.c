@@ -1,5 +1,4 @@
 #include <ruby.h>
-#include <ruby.h>
 #include "context.h"
 #include "feature.h"
 

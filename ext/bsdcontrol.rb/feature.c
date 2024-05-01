@@ -1,10 +1,10 @@
 #include <ruby.h>
 #include <libhbsdcontrol.h>
 #include <fcntl.h>
+#include <errno.h>
 #include "feature.h"
 #include "context.h"
 #include "glue.h"
-#include <errno.h>
 
 /*
  * BSD::Control::Feature#status
