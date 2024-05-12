@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+module BSD
+end unless defined?(BSD)
+
 module BSD::Control
-  require_relative "control/context"
-  require_relative "control/feature"
   Error = Class.new(RuntimeError)
 
   ##
@@ -44,4 +45,8 @@ module BSD::Control
     feature = available_features.find { _1.name == name.to_s }
     feature || raise(Error, "feature '#{name}' wasn't found")
   end
+
+  require_relative "control/context"
+  require_relative "control/feature"
+  require_relative "../bsdcontrol.rb.so"
 end
