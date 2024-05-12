@@ -9,7 +9,13 @@ Gem::Specification.new do |gem|
   gem.homepage = 'https://git.hardenedbsd.org/0x1eef/bsdcontrol.rb#readme'
   gem.version = BSD::Control::VERSION
   gem.licenses = ['0BSD']
-  gem.files = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
+  gem.files = Dir[
+    File.join(__dir__, "lib", "*.rb"),
+    File.join(__dir__, "lib", "**", "*.rb"),
+    File.join(__dir__, "ext", "bsdcontrol.rb", "*.{c,h,rb}"),
+    File.join(__dir__, "share", "bsdcontrol.rb", "examples", "*.rb"),
+    "README.md", "LICENSE"
+  ]
   gem.require_paths = ['lib']
   gem.extensions = %w[ext/bsdcontrol.rb/extconf.rb]
   gem.summary = 'Ruby bindings for libhbsdcontrol'
