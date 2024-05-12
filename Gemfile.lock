@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bsdcontrol.rb (0.1.0)
+    bsdcontrol.rb (0.1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -23,4 +23,4 @@ DEPENDENCIES
   test-unit (~> 3.6)
 
 BUNDLED WITH
-   2.5.3
+   2.5.9
