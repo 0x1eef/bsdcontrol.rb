@@ -1,5 +1,5 @@
 BasedOnStyle: LLVM
-IndentWidth: 2
+IndentWidth: 4
 SortIncludes: false
 UseTab: Never
 BreakBeforeBraces: Allman
