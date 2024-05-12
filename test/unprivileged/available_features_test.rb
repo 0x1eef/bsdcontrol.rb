@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "../setup"
 module BSD::Control
   class AvailableFeaturesTest < Test::Unit::TestCase

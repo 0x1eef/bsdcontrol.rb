@@ -1,0 +1,36 @@
+##
+# Plugins
+require:
+  - standard
+
+##
+# Defaults: standard-rb
+inherit_gem:
+  standard: config/base.yml
+
+##
+# All cops
+AllCops:
+  TargetRubyVersion: 3.2
+  Include:
+    - lib/*.rb
+    - lib/**/*.rb
+    - test/*.rb
+    - test/**/*.rb
+    - share/bsdcontrol.rb/examples/*.rb
+
+##
+# Enabled
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+##
+# Disabled
+Layout/ArgumentAlignment:
+  Enabled: false
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+Layout/EmptyLineBetweenDefs:
+  Enabled: false
+Style/TrivialAccessors:
+  Enabled: false

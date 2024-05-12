@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require_relative "../setup"
 module BSD::Control
   class FeatureStatusTest < Test::Unit::TestCase
-    require 'fileutils'
+    require "fileutils"
     include FileUtils
 
     def test_pageexec_sysdef_status
@@ -20,7 +22,6 @@ module BSD::Control
     ensure
       rm(file)
     end
-
 
     def test_pageexec_disabled_status
       touch(file)

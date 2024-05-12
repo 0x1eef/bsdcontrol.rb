@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BSD::Control
   require_relative "control/context"
   require_relative "control/feature"
@@ -40,6 +42,6 @@ module BSD::Control
   #  Returns an instance of {BSD::Control::Feature BSD::Control::Feature}.
   def self.feature(name)
     feature = available_features.find { _1.name == name.to_s }
-    feature ? feature : raise(Error, "feature '#{name}' wasn't found")
+    feature || raise(Error, "feature '#{name}' wasn't found")
   end
 end

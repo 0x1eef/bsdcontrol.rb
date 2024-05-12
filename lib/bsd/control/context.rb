@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BSD::Control
   ##
   # The {BSD::Control::Context BSD::Control::Context} class encapsulates

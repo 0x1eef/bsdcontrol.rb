@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require_relative "../setup"
 module BSD::Control
   class EnableFeatureTest < Test::Unit::TestCase
-    require 'fileutils'
+    require "fileutils"
     include FileUtils
 
     def test_enable_pageexec

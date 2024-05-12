@@ -1,23 +1,25 @@
-require "bundler/setup"
-require "rake/extensiontask"
-Rake::ExtensionTask.new("bsdcontrol.rb")
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'rake/extensiontask'
+Rake::ExtensionTask.new('bsdcontrol.rb')
 task default: %w[clobber compile test]
 
 namespace :clang do
-  desc "Run clang-format"
+  desc 'Run clang-format'
   task :format do
-    sh "clang-format -style=file:.clang-format -i ext/bsdcontrol.rb/*.c"
+    sh 'clang-format -style=file:.clang-format -i ext/bsdcontrol.rb/*.c'
   end
 end
 
 namespace :test do
-  desc "Run unprivileged tests"
+  desc 'Run unprivileged tests'
   task :unprivileged do
-    sh "./bin/run-unprivileged-tests"
+    sh './bin/run-unprivileged-tests'
   end
 
-  desc "Run superuser tests"
+  desc 'Run superuser tests'
   task :superuser do
-    sh "./bin/run-superuser-tests"
+    sh './bin/run-superuser-tests'
   end
 end
