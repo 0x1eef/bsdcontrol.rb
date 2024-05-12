@@ -5,10 +5,15 @@ require 'rake/extensiontask'
 Rake::ExtensionTask.new('bsdcontrol.rb')
 task default: %w[clobber compile test]
 
-namespace :clang do
+namespace :format do
   desc 'Run clang-format'
-  task :format do
+  task :clang do
     sh 'clang-format -style=file:.clang-format -i ext/bsdcontrol.rb/*.c'
+  end
+
+  desc 'Run rubocop'
+  task :ruby do
+    sh 'bundle exec rubocop -A'
   end
 end
 
