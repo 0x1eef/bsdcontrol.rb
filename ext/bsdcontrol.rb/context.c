@@ -11,7 +11,7 @@ VALUE
 bsdcontrol_context_alloc(VALUE klass)
 {
     hbsdctrl_ctx_t *ctx;
-    ctx   = hbsdctrl_ctx_new(FLAGS, NAMESPACE);
+    ctx = hbsdctrl_ctx_new(FLAGS, NAMESPACE);
     if (ctx == NULL)
     {
         rb_raise(rb_eSystemCallError, "hbsdctrl_ctx_new");
