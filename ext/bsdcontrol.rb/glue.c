@@ -20,9 +20,9 @@ bsdcontrol_open(VALUE path)
 hbsdctrl_ctx_t *
 bsdcontrol_unwrap(VALUE rbcontext)
 {
-    struct bsdcontrol_ctx_t *rbctx;
-    Data_Get_Struct(rbcontext, struct bsdcontrol_ctx_t, rbctx);
-    return rbctx->ctx;
+    hbsdctrl_ctx_t *ctx;
+    Data_Get_Struct(rbcontext, hbsdctrl_ctx_t, ctx);
+    return ctx;
 }
 
 hbsdctrl_feature_t *

@@ -5,32 +5,24 @@
 
 static int FLAGS             = HBSDCTRL_FEATURE_STATE_FLAG_NONE;
 static const char *NAMESPACE = LIBHBSDCONTROL_DEFAULT_NAMESPACE;
-static void bsdcontrol_context_free(struct bsdcontrol_ctx_t *);
+static void bsdcontrol_context_free(hbsdctrl_ctx_t *);
 
 VALUE
 bsdcontrol_context_alloc(VALUE klass)
 {
     hbsdctrl_ctx_t *ctx;
-    struct bsdcontrol_ctx_t *rbctx;
     ctx   = hbsdctrl_ctx_new(FLAGS, NAMESPACE);
-    rbctx = calloc(1, sizeof(struct bsdcontrol_ctx_t));
     if (ctx == NULL)
     {
         rb_raise(rb_eSystemCallError, "hbsdctrl_ctx_new");
     }
-    else if (rbctx == NULL)
-    {
-        rb_raise(rb_eSystemCallError, "calloc");
-    }
-    rbctx->ctx = ctx;
-    return Data_Wrap_Struct(klass, NULL, bsdcontrol_context_free, rbctx);
+    return Data_Wrap_Struct(klass, NULL, bsdcontrol_context_free, ctx);
 }
 
 static void
-bsdcontrol_context_free(struct bsdcontrol_ctx_t *rbctx)
+bsdcontrol_context_free(hbsdctrl_ctx_t *ctx)
 {
-    hbsdctrl_ctx_free(&rbctx->ctx);
-    free(rbctx);
+    hbsdctrl_ctx_free(&ctx);
 }
 
 /*
