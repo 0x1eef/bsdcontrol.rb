@@ -1,13 +1,13 @@
 ## About
 
 bsdcontrol.rb provides Ruby bindings for libhbsdcontrol from the
-[hardenedbsd](https://hardenedbsd.org) project.
+[HardenedBSD](https://HardenedBSD.org) project.
 
 ## Examples
 
 __Features__
 
-The first example prints a list of hardenedbsd features that
+The first example prints a list of HardenedBSD features that
 can be enabled, disabled or restored to the system default:
 
 ``` ruby
@@ -62,7 +62,7 @@ A complete API reference is available at
 
 **Rubygems.org**
 
-bsdcontrol.rb can be installed via rubygems.org.
+bsdcontrol.rb can be installed via rubygems.org:
 
     gem install bsdcontrol.rb
 
@@ -70,7 +70,7 @@ bsdcontrol.rb can be installed via rubygems.org.
 
 * [GitHub](https://github.com/0x1eef/bsdcontrol.rb)
 * [GitLab](https://gitlab.com/0x1eef/bsdcontrol.rb)
-* [git.hardenedbsd.org](https://git.hardenedbsd.org/0x1eef/bsdcontrol.rb)
+* [git.HardenedBSD.org](https://git.HardenedBSD.org/0x1eef/bsdcontrol.rb)
 
 ## License
 
