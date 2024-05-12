@@ -13,4 +13,5 @@ Gem::Specification.new do |gem|
   gem.description = gem.summary
   gem.add_development_dependency "rake-compiler", "~> 1.2"
   gem.add_development_dependency "test-unit", "~> 3.6"
+  gem.add_development_dependency "test-cmd.rb", "~> 0.8"
 end
