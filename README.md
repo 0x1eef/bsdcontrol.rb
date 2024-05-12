@@ -8,7 +8,8 @@ bsdcontrol.rb provides Ruby bindings for libhbsdcontrol from the
 __Features__
 
 The first example prints a list of HardenedBSD features that
-can be enabled, disabled or restored to the system default:
+can be enabled, disabled or restored to the system default
+setting:
 
 ``` ruby
 #!/usr/bin/env ruby
