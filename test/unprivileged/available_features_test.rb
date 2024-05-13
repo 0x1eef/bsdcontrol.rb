@@ -2,15 +2,14 @@
 
 require_relative "../setup"
 module BSD::Control
-  class AvailableFeaturesTest < Test::Unit::TestCase
+  class AvailableFeaturesTest < BSD::Control::Test
     def test_available_features_not_empty
-      refute available_features.empty?,
-             "There should have been at least one available feature"
+      assert_equal false, available_features.empty?
     end
 
     def test_available_features_instance_of
-      assert available_features.all? { _1.instance_of?(BSD::Control::Feature) },
-             "All available features should be an instance of `BSD::Control::Feature`"
+      assert_equal true,
+                   available_features.all? { _1.instance_of?(BSD::Control::Feature) }
     end
 
     private

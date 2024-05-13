@@ -2,7 +2,7 @@
 
 require_relative "../setup"
 module BSD::Control
-  class FeatureTest < Test::Unit::TestCase
+  class FeatureTest < BSD::Control::Test
     def test_pageexec_feature
       assert_instance_of BSD::Control::Feature,
                          BSD::Control.feature(:pageexec)

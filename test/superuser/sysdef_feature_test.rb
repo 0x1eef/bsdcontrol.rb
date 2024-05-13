@@ -2,38 +2,23 @@
 
 require_relative "../setup"
 module BSD::Control
-  class SysDefFeatureTest < Test::Unit::TestCase
-    require "fileutils"
-    include FileUtils
-
+  class SysDefFeatureTest < BSD::Control::Test
     def test_sysdef_pageexec
-      touch(file)
-      assert BSD::Control.feature(:pageexec).enable!(file),
-             "The enable! method should have returned true"
-      assert_equal(
-        :enabled,
-        BSD::Control.feature(:pageexec).status(file)
-      )
-      assert BSD::Control.feature(:pageexec).sysdef!(file),
-             "The sysdef! method should have returned true"
-      assert_equal(
-        :sysdef,
-        BSD::Control.feature(:pageexec).status(file)
-      )
-    ensure
-      rm(file)
+      assert_equal true,
+                   BSD::Control.feature(:pageexec).enable!(file)
+      assert_equal :enabled,
+                   BSD::Control.feature(:pageexec).status(file)
+      assert_equal true,
+                   BSD::Control.feature(:pageexec).sysdef!(file)
+      assert_equal :sysdef,
+                   BSD::Control.feature(:pageexec).status(file)
     end
 
     def test_enable_pageexec_nonexistent_file
+      rm(file)
       assert_raises(Errno::ENOENT) do
         BSD::Control.feature(:pageexec).sysdef!(file)
       end
-    end
-
-    private
-
-    def file
-      File.join(__dir__, "file")
     end
   end
 end

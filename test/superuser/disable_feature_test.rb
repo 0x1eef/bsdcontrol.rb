@@ -2,32 +2,19 @@
 
 require_relative "../setup"
 module BSD::Control
-  class DisableFeatureTest < Test::Unit::TestCase
-    require "fileutils"
-    include FileUtils
-
+  class DisableFeatureTest < BSD::Control::Test
     def test_disable_pageexec
-      touch(file)
-      assert BSD::Control.feature(:pageexec).disable!(file),
-             "The disable! method should have returned true"
-      assert_equal(
-        :disabled,
-        BSD::Control.feature(:pageexec).status(file)
-      )
-    ensure
-      rm(file)
+      assert_equal true,
+                   BSD::Control.feature(:pageexec).disable!(file)
+      assert_equal :disabled,
+                   BSD::Control.feature(:pageexec).status(file)
     end
 
     def test_disable_pageexec_nonexistent_file
+      rm(file)
       assert_raises(Errno::ENOENT) do
         BSD::Control.feature(:pageexec).disable!(file)
       end
-    end
-
-    private
-
-    def file
-      File.join(__dir__, "file")
     end
   end
 end
