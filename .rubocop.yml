@@ -34,3 +34,5 @@ Layout/EmptyLineBetweenDefs:
   Enabled: false
 Style/TrivialAccessors:
   Enabled: false
+Style/MultilineIfModifier:
+  Enabled: false
