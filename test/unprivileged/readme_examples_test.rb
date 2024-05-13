@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "setup"
+require_relative "../setup"
 
 class ReadmeExamplesTest < Test::Unit::TestCase
   require "rbconfig"

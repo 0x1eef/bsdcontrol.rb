@@ -17,7 +17,7 @@ run_test()
 # main
 if [ "$(id -u)" != "0" ]; then
     rake clean clobber compile
-    for file in test/readme_examples_test.rb test/unprivileged/*_test.rb; do
+    for file in test/unprivileged/*_test.rb; do
         logfile=".runner.log_$(basename ${file})"
         if run_test "${file}" "${logfile}"; then
             echo -n .
