@@ -4,17 +4,15 @@ require_relative "../setup"
 
 module BSD::Control
   class ReadmeExamplesTest < BSD::Control::Test
-    require "rbconfig"
     require "test/cmd"
 
     def test_available_features_success
       assert_equal true,
-                   cmd(RbConfig.ruby, readme_example("1_available_features.rb"))
-                     .status.success?
+                   cmd("ruby", readme_example("1_available_features.rb")).success?
     end
 
     def test_available_features_stdout
-      cmd(RbConfig.ruby, readme_example("1_available_features.rb"))
+      cmd("ruby", readme_example("1_available_features.rb"))
         .stdout
         .each_line { assert_match %r{The [a-zA-Z0-9_]+ feature is available}, _1 }
     end
