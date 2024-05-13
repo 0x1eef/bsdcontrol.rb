@@ -1,12 +1,36 @@
 #!/bin/sh
 set -e
-if [ $(id -u) = 0 ]; then
+
+##
+# functions
+run_test()
+{
+    testfile="${1}"
+    logfile="${2}"
+    ruby -Ilib \
+        "${testfile}" \
+        --no-use-color \
+        > "${logfile}" 2>&1
+}
+
+##
+# main
+if [ "$(id -u)" = "0" ]; then
     rake clean clobber compile
     rm -rf tmp/
     for file in test/superuser/*_test.rb; do
-        ruby -Ilib ${file} --no-use-color
+        logfile=".runner.log_$(basename ${file})"
+        if run_test "${file}" "${logfile}"; then
+            echo -n .
+            rm "${logfile}"
+        else
+            cat "${logfile}"
+            rm "${logfile}"
+            exit 1
+        fi
     done
+    echo
 else
-    echo "You must be the root user to run these tests."
+    echo "This script must be run by root"
     exit 1
 fi
