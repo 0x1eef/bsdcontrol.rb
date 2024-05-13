@@ -12,9 +12,9 @@ module BSD::Control
     end
 
     def test_available_features_stdout
-      cmd("ruby", readme_example("1_available_features.rb"))
-        .stdout
-        .each_line { assert_match %r{The [a-zA-Z0-9_]+ feature is available}, _1 }
+      assert_match %r|\A(The [a-zA-Z0-9_]+ feature is available\n){9}\z|,
+                   cmd("ruby", readme_example("1_available_features.rb")).stdout
+
     end
 
     private
