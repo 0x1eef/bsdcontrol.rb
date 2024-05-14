@@ -1,6 +1,7 @@
 #include <ruby.h>
 #include <libhbsdcontrol.h>
 #include <fcntl.h>
+#include <errno.h>
 #include "glue.h"
 #include "context.h"
 
