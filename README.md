@@ -61,8 +61,6 @@ A complete API reference is available at
 
 ## Install
 
-**Rubygems.org**
-
 bsdcontrol.rb can be installed via rubygems.org:
 
     gem install bsdcontrol.rb
