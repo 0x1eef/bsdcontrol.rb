@@ -18,8 +18,9 @@ module BSD::Control
 
     private
 
-    def readme_example(name)
-      File.join(Dir.getwd, "share", "bsdcontrol.rb", "examples", name)
+    def readme_example(path)
+      dir = File.join(Dir.getwd, "share", "bsdcontrol.rb", "examples")
+      File.join(dir, path)
     end
   end
 end

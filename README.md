@@ -57,7 +57,7 @@ BSD::Control
 ## Documentation
 
 A complete API reference is available at
-[0x1eef.github.io/x/bsdcontrol.rb](https://0x1eef.github.io/x/bsdcontrol.rb).
+[0x1eef.github.io/x/bsdcontrol.rb](https://0x1eef.github.io/x/bsdcontrol.rb)
 
 ## Install
 
@@ -75,7 +75,7 @@ bsdcontrol.rb can be installed via rubygems.org:
 
 ## License
 
-[BSD Zero Clause](https://choosealicense.com/licenses/0bsd/).
+[BSD Zero Clause](https://choosealicense.com/licenses/0bsd/)
 <br>
-See [LICENSE](./LICENSE).
+See [LICENSE](./LICENSE)
 
