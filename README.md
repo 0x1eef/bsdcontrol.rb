@@ -1,7 +1,7 @@
 ## About
 
-bsdcontrol.rb provides Ruby bindings for libhbsdcontrol from the
-[HardenedBSD](https://HardenedBSD.org) project.
+bsdcontrol.rb provides Ruby bindings for
+[libhbsdcontrol](https://git.hardenedbsd.org/hardenedbsd/HardenedBSD/-/tree/hardened/current/master/lib/libhbsdcontrol/).
 
 ## Examples
 
