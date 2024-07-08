@@ -69,8 +69,8 @@ bsdcontrol.rb can be installed via rubygems.org:
 
 * [GitHub](https://github.com/0x1eef/bsdcontrol.rb)
 * [GitLab](https://gitlab.com/0x1eef/bsdcontrol.rb)
-* [git.HardenedBSD.org](https://git.HardenedBSD.org/0x1eef/bsdcontrol.rb)
-* [brew.bsd.cafe](https://brew.bsd.cafe/0x1eef/bsdcontrol.rb)
+* [git.HardenedBSD.org/@0x1eef](https://git.HardenedBSD.org/0x1eef/bsdcontrol.rb)
+* [brew.bsd.cafe/@0x1eef](https://brew.bsd.cafe/0x1eef/bsdcontrol.rb)
 
 ## License
 
