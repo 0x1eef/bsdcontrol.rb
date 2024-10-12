@@ -2,35 +2,23 @@
 set -e
 
 ##
-# functions
-run_test()
-{
-    testfile="${1}"
-    logfile="${2}"
-    ruby -Ilib \
-        "${testfile}" \
-        --no-use-color \
-        > "${logfile}" 2>&1
-}
-
-##
 # main
-if [ "$(id -u)" = "0" ]; then
-    bundle exec rake clean clobber compile
-    rm -rf tmp/
-    for file in test/superuser/*_test.rb; do
-        logfile=".runner.log_$(basename ${file})"
-        if run_test "${file}" "${logfile}"; then
-            echo -n .
-            rm "${logfile}"
-        else
-            cat "${logfile}"
-            rm "${logfile}"
-            exit 1
-        fi
-    done
-    echo
-else
+if [ "$(id -u)" != "0" ]; then
     echo "This script must be run by root"
     exit 1
 fi
+
+bundle exec rake clean clobber compile
+rm -rf tmp/
+for test in test/superuser/*_test.rb; do
+    log=".$(basename "${test}")_log.txt"
+    if ruby -Ilib "${test}" --no-use-color > "${log}" 2>&1; then
+        printf "."
+        rm "${log}"
+    else
+        cat "${log}"
+        rm "${log}"
+        exit 1
+    fi
+done
+echo
