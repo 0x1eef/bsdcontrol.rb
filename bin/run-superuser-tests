@@ -16,7 +16,7 @@ run_test()
 ##
 # main
 if [ "$(id -u)" = "0" ]; then
-    rake clean clobber compile
+    bundle exec rake clean clobber compile
     rm -rf tmp/
     for file in test/superuser/*_test.rb; do
         logfile=".runner.log_$(basename ${file})"
