@@ -20,7 +20,7 @@ bsdcontrol_feature_status(VALUE self, VALUE path)
     rbcontext = rb_funcall(self, rb_intern("context"), 0);
     fd        = bsdcontrol_open(path);
     ctx       = bsdcontrol_context_unwrap(rbcontext);
-    feature   = bsdcontrol_find_feature(ctx, self);
+    feature   = bsdcontrol_feature_find_by_name(ctx, self);
     errno     = 0;
     if (feature->hf_get(ctx, feature, &fd, &state) == RES_FAIL)
     {
@@ -51,7 +51,7 @@ bsdcontrol_feature_set(VALUE self, VALUE path, VALUE rbstate)
     rbcontext = rb_funcall(self, rb_intern("context"), 0);
     fd        = bsdcontrol_open(path);
     ctx       = bsdcontrol_context_unwrap(rbcontext);
-    feature   = bsdcontrol_find_feature(ctx, self);
+    feature   = bsdcontrol_feature_find_by_name(ctx, self);
     state     = NUM2INT(rbstate);
     errno     = 0;
     if (feature->hf_apply(ctx, feature, &fd, &state) == RES_FAIL)
@@ -80,7 +80,7 @@ bsdcontrol_feature_sysdef(VALUE self, VALUE path)
     rbcontext = rb_funcall(self, rb_intern("context"), 0);
     fd        = bsdcontrol_open(path);
     ctx       = bsdcontrol_context_unwrap(rbcontext);
-    feature   = bsdcontrol_find_feature(ctx, self);
+    feature   = bsdcontrol_feature_find_by_name(ctx, self);
     errno     = 0;
     if (feature->hf_unapply(ctx, feature, &fd, NULL) == RES_FAIL)
     {
@@ -93,4 +93,13 @@ bsdcontrol_feature_sysdef(VALUE self, VALUE path)
         close(fd);
         return Qtrue;
     }
+}
+
+hbsdctrl_feature_t *
+bsdcontrol_feature_find_by_name(hbsdctrl_ctx_t *ctx, VALUE rbfeature)
+{
+    VALUE name;
+    name = rb_funcall(rbfeature, rb_intern("name"), 0);
+    Check_Type(name, T_STRING);
+    return hbsdctrl_ctx_find_feature_by_name(ctx, RSTRING_PTR(name));
 }
