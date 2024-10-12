@@ -41,14 +41,6 @@ bsdcontrol_open(VALUE path)
     return fd;
 }
 
-hbsdctrl_ctx_t *
-bsdcontrol_unwrap(VALUE rbcontext)
-{
-    hbsdctrl_ctx_t *ctx;
-    Data_Get_Struct(rbcontext, hbsdctrl_ctx_t, ctx);
-    return ctx;
-}
-
 hbsdctrl_feature_t *
 bsdcontrol_find_feature(hbsdctrl_ctx_t *ctx, VALUE rbfeature)
 {
