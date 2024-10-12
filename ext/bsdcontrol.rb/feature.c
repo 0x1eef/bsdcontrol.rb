@@ -4,7 +4,7 @@
 #include <errno.h>
 #include "feature.h"
 #include "context.h"
-#include "glue.h"
+#include "bsdcontrol.h"
 
 /*
  * BSD::Control::Feature#status

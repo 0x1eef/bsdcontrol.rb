@@ -1,7 +1,7 @@
 #include <ruby.h>
 #include <libhbsdcontrol.h>
 #include "context.h"
-#include "glue.h"
+#include "bsdcontrol.h"
 
 static int FLAGS             = HBSDCTRL_FEATURE_STATE_FLAG_NONE;
 static const char *NAMESPACE = LIBHBSDCONTROL_DEFAULT_NAMESPACE;
