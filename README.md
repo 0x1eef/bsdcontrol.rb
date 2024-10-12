@@ -5,7 +5,7 @@ bsdcontrol.rb provides Ruby bindings for
 
 ## Examples
 
-__Features__
+### Features
 
 The first example prints a list of HardenedBSD features that
 can be enabled, disabled or restored to the system default
@@ -22,7 +22,7 @@ BSD::Control
 end
 ```
 
-__Enable__
+### Enable
 
 The following example enables the mprotect feature for the emacs binary. When
 a feature is enabled for a given file, that setting takes precendence
@@ -35,10 +35,10 @@ over the system default. The system default can be restored with
 require "bsdcontrol"
 BSD::Control
   .feature(:mprotect)
-  .enable!("/usr/local/bin/emacs-29.2")
+  .enable! File.realpath("/usr/local/bin/emacs")
 ```
 
-__Status__
+### Status
 
 There are five recognized statuses: `unknown`, `enabled`, `disabled`,
 `sysdef`, and `invalid`. The `sysdef` status indicates that a feature
@@ -77,4 +77,3 @@ bsdcontrol.rb can be installed via rubygems.org:
 [BSD Zero Clause](https://choosealicense.com/licenses/0bsd/)
 <br>
 See [LICENSE](./LICENSE)
-
