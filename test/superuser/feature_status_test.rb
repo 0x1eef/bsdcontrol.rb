@@ -4,20 +4,23 @@ require_relative "../setup"
 module BSD::Control
   class FeatureStatusTest < BSD::Control::Test
     def test_pageexec_sysdef_status
-      assert_equal :sysdef,
-                   BSD::Control.feature(:pageexec).status(file)
+      assert_equal :sysdef, feature(:pageexec).status(file)
     end
 
     def test_pageexec_enabled_status
-      BSD::Control.feature(:pageexec).enable!(file)
-      assert_equal :enabled,
-                   BSD::Control.feature(:pageexec).status(file)
+      feature(:pageexec).enable!(file)
+      assert_equal :enabled, feature(:pageexec).status(file)
     end
 
     def test_pageexec_disabled_status
-      BSD::Control.feature(:pageexec).disable!(file)
-      assert_equal :disabled,
-                   BSD::Control.feature(:pageexec).status(file)
+      feature(:pageexec).disable!(file)
+      assert_equal :disabled, feature(:pageexec).status(file)
+    end
+
+    private
+
+    def feature(name)
+      BSD::Control.feature(name)
     end
   end
 end
