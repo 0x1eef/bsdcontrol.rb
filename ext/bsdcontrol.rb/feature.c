@@ -135,5 +135,6 @@ get_feature_state(hbsdctrl_ctx_t *ctx,
       }
     }
     hbsdctrl_free_file_states(&fstates);
+    hbsdctrl_feature_state_free(&s);
     return res;
 }
