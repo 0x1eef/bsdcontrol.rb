@@ -6,7 +6,8 @@
 #include "context.h"
 #include "bsdcontrol.h"
 
-static int get_feature_state(hbsdctrl_ctx_t*, int, hbsdctrl_feature_t*, hbsdctrl_feature_state_t*);
+static int get_feature_state(hbsdctrl_ctx_t *, int, hbsdctrl_feature_t *,
+                             hbsdctrl_feature_state_t *);
 
 /*
  * BSD::Control::Feature#status
@@ -107,32 +108,32 @@ bsdcontrol_feature_find_by_name(hbsdctrl_ctx_t *ctx, VALUE rbfeature)
 }
 
 static int
-get_feature_state(hbsdctrl_ctx_t *ctx,
-		  int fd,
-		  hbsdctrl_feature_t *feature,
-		  hbsdctrl_feature_state_t *state)
+get_feature_state(hbsdctrl_ctx_t *ctx, int fd, hbsdctrl_feature_t *feature,
+                  hbsdctrl_feature_state_t *state)
 {
     hbsdctrl_file_states_t *fstate, *tfstate;
     hbsdctrl_file_states_head_t *fstates;
     hbsdctrl_feature_t *f;
     hbsdctrl_feature_state_t *s;
     int res = RES_FAIL;
-
     fstates = hbsdctrl_get_file_states(ctx, fd);
-    LIST_FOREACH_SAFE(fstate, &(fstates->hfsh_states), hfs_entry,
-		      tfstate) {
-      f = hbsdctrl_file_states_get_feature(fstate);
-      if (f == NULL) {
-	break;
-      }
-      if (strcmp(f->hf_name, feature->hf_name) == 0) {
-	s = hbsdctrl_file_states_get_feature_state(fstate);
-	if (s != NULL) {
-	  *state = *s;
-	  res = RES_SUCCESS;
-	}
-	break;
-      }
+    LIST_FOREACH_SAFE(fstate, &(fstates->hfsh_states), hfs_entry, tfstate)
+    {
+        f = hbsdctrl_file_states_get_feature(fstate);
+        if (f == NULL)
+        {
+            break;
+        }
+        if (strcmp(f->hf_name, feature->hf_name) == 0)
+        {
+            s = hbsdctrl_file_states_get_feature_state(fstate);
+            if (s != NULL)
+            {
+                *state = *s;
+                res    = RES_SUCCESS;
+            }
+            break;
+        }
     }
     hbsdctrl_free_file_states(&fstates);
     hbsdctrl_feature_state_free(&s);
