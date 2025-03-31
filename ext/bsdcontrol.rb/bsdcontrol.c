@@ -17,7 +17,8 @@ Init_bsdcontrol(void)
     rb_define_alloc_func(rb_cContext, bsdcontrol_context_alloc);
     rb_define_method(
         rb_cContext, "library_version", bsdcontrol_context_library_version, 0);
-    rb_define_method(rb_cContext,"set_namespace", bsdcontrol_context_set_namespace, 1);
+    rb_define_method(
+        rb_cContext, "set_namespace", bsdcontrol_context_set_namespace, 1);
     rb_define_method(rb_cContext,
                      "available_features",
                      bsdcontrol_context_available_features,

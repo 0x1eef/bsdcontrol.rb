@@ -72,20 +72,20 @@ bsdcontrol_context_library_version(VALUE self)
 VALUE
 bsdcontrol_context_set_namespace(VALUE self, VALUE namespace)
 {
-  Check_Type(namespace, T_STRING);
-  hbsdctrl_ctx_t *ctx;
-  char *ns;
-  ns = RSTRING_PTR(namespace);
-  if (strcmp(ns, "system") == 0 || strcmp(ns, "user") == 0)
-  {
-    ctx = bsdcontrol_context_unwrap(self);
-    extattr_string_to_namespace(ns, &(ctx->hc_namespace));
-    return Qtrue;
-  }
-  else
-  {
-    rb_raise(rb_eArgError, "namespace must be 'system' or 'user'");
-  }
+    Check_Type(namespace, T_STRING);
+    hbsdctrl_ctx_t *ctx;
+    char *ns;
+    ns = RSTRING_PTR(namespace);
+    if (strcmp(ns, "system") == 0 || strcmp(ns, "user") == 0)
+    {
+        ctx = bsdcontrol_context_unwrap(self);
+        extattr_string_to_namespace(ns, &(ctx->hc_namespace));
+        return Qtrue;
+    }
+    else
+    {
+        rb_raise(rb_eArgError, "namespace must be 'system' or 'user'");
+    }
 }
 
 hbsdctrl_ctx_t *
