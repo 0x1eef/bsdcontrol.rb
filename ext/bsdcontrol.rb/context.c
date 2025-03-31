@@ -1,5 +1,7 @@
 #include <ruby.h>
 #include <libhbsdcontrol.h>
+#include <sys/extattr.h>
+#include <libutil.h>
 #include "context.h"
 #include "bsdcontrol.h"
 
@@ -61,6 +63,29 @@ bsdcontrol_context_library_version(VALUE self)
     hbsdctrl_ctx_t *ctx;
     ctx = bsdcontrol_context_unwrap(self);
     return ULONG2NUM(ctx->hc_version);
+}
+
+/*
+ * BSD::Control::Context#set_namespace
+ * BSD::Control.set_namespace
+ */
+VALUE
+bsdcontrol_context_set_namespace(VALUE self, VALUE namespace)
+{
+  Check_Type(namespace, T_STRING);
+  hbsdctrl_ctx_t *ctx;
+  char *ns;
+  ns = RSTRING_PTR(namespace);
+  if (strcmp(ns, "system") == 0 || strcmp(ns, "user") == 0)
+  {
+    ctx = bsdcontrol_context_unwrap(self);
+    extattr_string_to_namespace(ns, &(ctx->hc_namespace));
+    return Qtrue;
+  }
+  else
+  {
+    rb_raise(rb_eArgError, "namespace must be 'system' or 'user'");
+  }
 }
 
 hbsdctrl_ctx_t *

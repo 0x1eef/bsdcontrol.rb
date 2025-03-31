@@ -21,6 +21,16 @@ module BSD::Control
   end
 
   ##
+  # @param [#to_s] namespace
+  #  Either "user" or "system"
+  # @raise [ArgumentError]
+  #  When an invalid namespace was given
+  # @return [void]
+  def self.set_namespace(namespace)
+    context.set_namespace(namespace.to_s)
+  end
+
+  ##
   # @return [Array<BSD::Control::Feature>]
   #  Returns an array of available features
   def self.available_features

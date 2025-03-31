@@ -3,6 +3,10 @@
 require_relative "../setup"
 module BSD::Control
   class FeatureStatusTest < BSD::Control::Test
+    def setup
+      BSD::Control.set_namespace(:user)
+    end
+
     def test_pageexec_sysdef_status
       assert_equal :sysdef, feature(:pageexec).status(file)
     end
