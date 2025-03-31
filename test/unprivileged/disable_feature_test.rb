@@ -3,6 +3,16 @@
 require_relative "../setup"
 module BSD::Control
   class DisableFeatureTest < BSD::Control::Test
+    def setup
+      super
+      BSD::Control.set_namespace(:user)
+    end
+
+    def test_disable_pageexec
+      assert_equal true, feature(:pageexec).disable!(file)
+      assert_equal :disabled, feature(:pageexec).status(file)
+    end
+
     def test_disable_pageexec_nonexistent_file
       rm(file)
       assert_raises(Errno::ENOENT) { feature(:pageexec).disable!(file) }
