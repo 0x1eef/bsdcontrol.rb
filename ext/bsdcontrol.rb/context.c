@@ -66,6 +66,26 @@ bsdcontrol_context_library_version(VALUE self)
 }
 
 /*
+ * BSD::Control::Context#namespace
+ * BSD::Control.namespace
+ */
+VALUE
+bsdcontrol_context_get_namespace(VALUE self)
+{
+    hbsdctrl_ctx_t *ctx;
+    char *namespace;
+    ctx = bsdcontrol_context_unwrap(self);
+    if (extattr_namespace_to_string(ctx->hc_namespace, &namespace) == 0)
+    {
+        return ID2SYM(rb_intern(namespace));
+    }
+    else
+    {
+        return Qnil;
+    }
+}
+
+/*
  * BSD::Control::Context#set_namespace
  * BSD::Control.set_namespace
  */
@@ -79,8 +99,14 @@ bsdcontrol_context_set_namespace(VALUE self, VALUE namespace)
     if (strcmp(ns, "system") == 0 || strcmp(ns, "user") == 0)
     {
         ctx = bsdcontrol_context_unwrap(self);
-        extattr_string_to_namespace(ns, &(ctx->hc_namespace));
-        return Qtrue;
+        if (extattr_string_to_namespace(ns, &(ctx->hc_namespace)) == 0)
+        {
+            return Qtrue;
+        }
+        else
+        {
+            return Qfalse;
+        }
     }
     else
     {

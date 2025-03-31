@@ -6,9 +6,6 @@
 #include "context.h"
 #include "bsdcontrol.h"
 
-static int get_feature_state(hbsdctrl_ctx_t *, int, hbsdctrl_feature_t *,
-                             hbsdctrl_feature_state_t *);
-
 /*
  * BSD::Control::Feature#status
  */

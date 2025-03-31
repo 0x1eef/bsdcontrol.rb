@@ -31,6 +31,13 @@ module BSD::Control
   end
 
   ##
+  # @return [String]
+  #  Returns the current namespace
+  def self.namespace
+    context.namespace
+  end
+
+  ##
   # @return [Array<BSD::Control::Feature>]
   #  Returns an array of available features
   def self.available_features
