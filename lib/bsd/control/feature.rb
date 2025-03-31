@@ -14,13 +14,10 @@ module BSD::Control
 
     ##
     # Enables a feature for a given file
-    #
     # @param [String] path
     #  The path to a file
-    #
     # @raise [SystemCallError]
     #  Might raise a number of Errno exceptions
-    #
     # @return [Boolean]
     #  Returns true on success
     def enable!(path)
@@ -29,13 +26,10 @@ module BSD::Control
 
     ##
     # Disables a feature for a given file
-    #
     # @param [String] path
     #  The path to a file
-    #
     # @raise [SystemCallError]
     #  Might raise a number of Errno exceptions
-    #
     # @return [Boolean]
     #  Returns true on success
     def disable!(path)
@@ -45,13 +39,10 @@ module BSD::Control
     ##
     # @!method sysdef!(path)
     #   Restores the system default for a given file
-    #
     #   @param [String] path
     #     The path to a file
-    #
     #   @raise [SystemCallError]
     #     Might raise a number of Errno exceptions
-    #
     #   @return [Boolean]
     #     Returns true on success
 
@@ -63,7 +54,6 @@ module BSD::Control
     ##
     # @param [String] path
     #  The path to a file
-    #
     # @return [Boolean]
     #  Returns true when a feature is enabled
     def enabled?(path)
@@ -73,7 +63,6 @@ module BSD::Control
     ##
     # @param [String] path
     #  The path to a file.
-    #
     # @return [Boolean]
     #  Returns true when a feature is disabled
     def disabled?(path)
@@ -83,7 +72,6 @@ module BSD::Control
     ##
     # @param [String] path
     #  The path to a file
-    #
     # @return [Boolean]
     #  Returns true when the system default setting is used
     def sysdef?(path)
@@ -93,7 +81,6 @@ module BSD::Control
     ##
     # @param [String] path
     #  The path to a file
-    #
     # @return [Boolean]
     #  Returns true when a feature is in an invalid state
     #  (eg: the feature is both enabled and disabled at the same time)
@@ -105,10 +92,8 @@ module BSD::Control
     # @!method status(path)
     #   @param [String] path
     #     The path to a file
-    #
     #   @raise [SystemCallError]
     #     Might raise a number of Errno exceptions
-    #
     #   @return [Symbol]
     #     Returns the status of a feature for a given file.
     #     Status could be: `:unknown`, `:enabled`, `:disabled`,

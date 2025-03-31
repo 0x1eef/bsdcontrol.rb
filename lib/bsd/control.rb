@@ -32,13 +32,10 @@ module BSD::Control
   #   BSD::Control
   #     .feature(:mprotect)
   #     .enable!("/usr/local/bin/emacs-29.2")
-  #
   # @param [String] name
   #  The name of a feature
-  #
   # @raise [BSD::Control::Error]
   #  When a feature wasn't found
-  #
   # @return [BSD::Control::Feature]
   #  Returns an instance of {BSD::Control::Feature BSD::Control::Feature}
   def self.feature(name)
