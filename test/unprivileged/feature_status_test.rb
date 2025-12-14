@@ -4,6 +4,7 @@ require_relative "../setup"
 module BSD::Control
   class FeatureStatusTest < BSD::Control::Test
     def setup
+      super
       BSD::Control.set_namespace(:user)
     end
 
