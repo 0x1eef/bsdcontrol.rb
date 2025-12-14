@@ -1,0 +1,26 @@
+name: bsdcontrol-rb
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run test
+      uses: 0x1eef/hardenedbsd-vm@v1
+      with:
+        release: '16-CURRENT'
+        run: |
+          mdo -u root pkg-static install -y rubygem-bundler rubygem-rake ruby34
+          bundle34 install
+          rake34 test:unprivileged
+          mdo -u root rake34 test:superuser
